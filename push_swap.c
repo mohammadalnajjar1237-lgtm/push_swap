@@ -12,15 +12,15 @@
     while 
 }*/
 
-void	push_swap(int bench_flag, char *selector, int *integers, int num_args)
+void	push_swap(int bench_flag, char *selector, int *integers, int capacity)
 {
     stack *a;
     if (!check_args)
     {
         write(2, "ERROR\n", 6);
-        return ;
+        exit(1) ;
     }
-    a = creat_stack(num_args);
+    a = creat_stack(num_args, integers);
     if (!a)
         exit(1);
     if (ft_strncmp(selector, "complex") == 0)
