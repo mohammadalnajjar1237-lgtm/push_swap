@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-void sort_in_simple(stack *a, int size, int bench_flag)
+void sort_in_simple(stack *a, int capacity, int bench_flag)
 {
     stack *b;
     double disorder;
-    b = a
+    b = creat_stack(capacity);
     disorder = measure_disorder(a);
     while (disorder > 0)
     {
