@@ -56,10 +56,9 @@ void    fill_stack(char **args, t_stack **a, int av, int flags_num)
     while (i < av)
     {
         j = 0;
-        integers = ft_strjoin_m(ft_split(args[i], ' '), integers);
+        integers = ft_split(args[i], ' ');
         if (!integers)
             exit(1);
-        ft_strjoin(integers);
         while (integers[j])
             push(a, create_stack(ft_atoi_m(integers[j++])));//lazm t3mal check lal errors bel atoi
         free_all(integers, j);
