@@ -1,35 +1,24 @@
-#include <unistd.h>
+#include "push_swap.h"
 
-/*size_t return_number(int bench_flag, int selector_flag, int num_args)
-{
-    size_t count;
-    int start_index;
-    int i;
-    int j;
 
-    start_index = bench_flag + selector_flag + 1;
-    i = 0;
-    while 
-}*/
-
-void	push_swap(int bench_flag, char *selector, int *integers, int capacity)
+void	push_swap(int bench_flag, char *selector, char **integer, int av)
 {
     stack *a;
-    if (!check_args)
-    {
-        write(2, "ERROR\n", 6);
-        exit(1) ;
-    }
-    a = creat_stack(num_args, integers);
-    if (!a)
-        exit(1);
-    if (ft_strncmp(selector, "complex") == 0)
-        sort_in_complex(integers, num_args, bench_flag);
-   else if (ft_strncmp(selector, "simple") == 0)
-         sort_in_simple(integers, num_args, bench_flag);
-    else if (ft_strncmp(selector, "medium") == 0)
-         sort_in_medium(integers, num_args, bench_flag);
+    int selector_flag;
+
+    selector_flag = 1;
+    if (*selector == '\0')
+        selector_flag = 0;
+    if (av == bench_flag + selector_flag + 1)
+        print_error();
+    fill_stack(integers, &a, av, selector_flag + bench_flag);
+    if (ft_strncmp(selector, "complex", 7) == 0)
+        sort_in_complex(a, bench_flag);
+   else if (ft_strncmp(selector, "simple", 6) == 0)
+         sort_in_simple(a, bench_flag);
+    else if (ft_strncmp(selector, "medium", 6) == 0)
+         sort_in_medium(a, bench_flag);
     else
-        sort_adaptivly(integers num_args, bench_flag);
+        sort_adaptivly(a, bench_flag);
    //3ashan a7el moshkelet el operations bel bench ba3mel two dim array
 }
