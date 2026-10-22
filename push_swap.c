@@ -20,5 +20,5 @@ void	push_swap(int bench_flag, char *selector, char **integer, int av)
          sort_in_medium(a, bench_flag);
     else
         sort_adaptivly(a, bench_flag);
-   //3ashan a7el moshkelet el operations bel bench ba3mel two dim array
+   //3ashan a7el moshkelet el operations bel bench ba3mel one dim array
 }

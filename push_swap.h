@@ -17,10 +17,11 @@ t_stack   *create_stack(int value);
 
 void    check_dups(char **integers);
 
- char	**free_all(char **strs, int count);
+ char	**free_all(char **strs);
 
  int	ft_atoi_m(const char *nptr);
 
  void    print_error();
+char **ft_strjoin_m(char **splitted, char **integers);
 
 #endif
