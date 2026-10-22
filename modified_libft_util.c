@@ -1,5 +1,11 @@
 #include "push_swap.h"
-char **ft_strjoin_m(char **splitted, char **integers);
+
+void free_strjoin(char **s, int length)
+{
+        free(s);
+}
+
+char **ft_strjoin_m(char **splitted, char **integers)
 {
     int i;
     int splitted_len;
@@ -7,7 +13,7 @@ char **ft_strjoin_m(char **splitted, char **integers);
     char **new;
 
     i = 0;
-    i = 0;
+    splitted_len = 0;
     integers_len = 0;
     if (!splitted)
         exit(1);
@@ -18,24 +24,27 @@ char **ft_strjoin_m(char **splitted, char **integers);
     i = 0;
     while (integers[i++])
         integers_len++;
-    new = malloc(sizeof(char *) * (len + 1));
+    new = malloc(sizeof(char *) * (splitted_len + integers_len + 1));
     if (!new)
         exit(1);
     i = 0;
-    while (i < splitted_len)
+    while (i < integers_len)
     {
-        new[i] = splitted[i]
+        new[i] = integers[i];
         i++;
     }
-    splitted_len = 0;
-    while (splitted_len < integers_len)
-        new[i++] = integers[splitted_len++]
+    free(integers);
+    integers_len = 0;
+    while (integers_len < splitted_len)
+        new[i++] = splitted[integers_len++];
     new[i] = NULL;
+    free(splitted);
+    return (new);
 }
 int	ft_atoi_m(const char *nptr)
 {
 	int	i;
-	int	result;
+	long	result;
 	int	sign;
 
 	i = 0;
@@ -52,17 +61,17 @@ int	ft_atoi_m(const char *nptr)
 		result = (result * 10) + (nptr[i] - '0');
 		i++;
 	}
-    if (nptr[i] != '\0')
+    if (nptr[i] != '\0' || result > 2147483647 || result < -2147483648)
         print_error();
 	return (result * sign);
 }
 
- char	**free_all(char **strs, int count)
+ char	**free_all(char **strs)
 {
 	int	i;
 
 	i = 0;
-	while (i < count)
+	while (strs[i])
 	{
 		free(strs[i]);
 		i++;
