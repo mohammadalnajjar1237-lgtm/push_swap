@@ -11,11 +11,11 @@ void	push_swap(int bench_flag, char *selector, char **integers, int av)
         selector_flag = 0;
     if (av == bench_flag + selector_flag + 1)
         print_error();
-    fill_stack(integers, &a, av, selector_flag + bench_flag);
+   count = fill_stack(integers, &a, av, selector_flag + bench_flag);
     /*if (ft_strncmp(selector, "complex", 7) == 0)
         sort_in_complex(a, bench_flag);
    else if (ft_strncmp(selector, "simple", 6) == 0)
-         sort_in_simple(a, bench_flag);
+         sort_in_simple(a, bench_flag, count);
     else if (ft_strncmp(selector, "medium", 6) == 0)
          sort_in_medium(a, bench_flag);
     else

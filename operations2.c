@@ -11,7 +11,7 @@ int push_b(t_stack *a, t_stack *b)
     return (1);
 }
 
-int rotate_a(t_stack **a)//momken adeef ft_printf
+int rotate(t_stack **a, char c)//momken adeef ft_printf
 {
     t_stack *temp_last_node;
     t_stack *temp;
@@ -25,10 +25,11 @@ int rotate_a(t_stack **a)//momken adeef ft_printf
     (temp) -> next = NULL;
     temp_last_node -> next = *a;
     *a = temp_last_node;
+    ft_printf("r%c\n", c);
     return (1);
 }
 
-int reverse_rotate_a(t_stack **a)
+int reverse_rotate(t_stack **a, char c)
 {
     t_stack *temp;
 
@@ -38,5 +39,19 @@ int reverse_rotate_a(t_stack **a)
     ft_lstlast2(*a) -> next = *a;
     (*a) -> next = NULL;
     *a = temp;
+    ft_printf("rr%c\n", c);
+    return (1);
+}
+int rr(t_stack **a, t_stack **b)
+{
+    if (!rotate(a, 'a') || !rotate(b, 'b'))
+        return (0);
+    return (1);
+}
+
+int rrr(t_stack **a, t_stack **b)
+{
+    if (!reverse_rotate(a, 'a') || !reverse_rotate(b, 'b'))
+        return (0);
     return (1);
 }
