@@ -19,6 +19,7 @@ int swap_b(t_stack *b)
     b -> next = ft_lstlast2(b);
     (b->next) -> next = temp;
     (temp) -> next = NULL;
+    ft_printf("sb\n");
     return (1);
 }
 
@@ -34,6 +35,7 @@ int swap_a(t_stack *a)
     a -> next = ft_lstlast2(a);
     (a->next) -> next = temp;
     (temp) -> next = NULL;
+    ft_printf("sa\n");
     return (1);
 }
 
@@ -41,6 +43,7 @@ int ss(t_stack *a, t_stack *b)
 {
     if (!swap_a(a) || !swap_b(b))
         return (0);
+    ft_printf("ss\n");
     return (1);
 }
 
@@ -52,5 +55,6 @@ int push_a(t_stack *a, t_stack *b)
     while ((b->next)->next)
         b = b->next;
     b -> next = NULL;
+    ft_printf("pa\n");
     return (1);
 }

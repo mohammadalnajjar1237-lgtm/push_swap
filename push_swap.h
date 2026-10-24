@@ -9,9 +9,15 @@ typedef struct stack{
     struct stack *next;
 }t_stack;
 
-void	push(t_stack **lst, t_stack *new);
+typedef struct stack_track 
+{
+    int size_of_stack;
+    t_stack *top;    
+} t_stack_track;
 
-void    fill_stack(char **args, t_stack **a, int av, int selector_flag);
+void	push_stack(t_stack **lst, t_stack *new);
+
+int    fill_stack(char **args, t_stack **a, int av, int selector_flag);
 
 t_stack   *create_stack(int value);
 
@@ -26,9 +32,12 @@ char **ft_strjoin_m(char **splitted, char **integers);
 int swap_a(t_stack *a);
 t_stack	*ft_lstlast2(t_stack *lst);
 void	ft_lstadd_back2(t_stack **lst, t_stack *new);
-int push_a(t_stack *a, t_stack *b);
-int push_b(t_stack *a, t_stack *b);
-int rotate_a(t_stack **a);
+int push(t_stack *a, t_stack *b, char c);
+int rotate(t_stack **a, char c);
 int is_empty_or_unary(t_stack *a);
-int reverse_rotate_a(t_stack **a);
+int reverse_rotate(t_stack **a, char c);
+int rr(t_stack **a, t_stack **b);
+int rrr(t_stack **a, t_stack **b);
+void	sort_simple(t_stack *a, t_stack *b, t_bench *bench);
+void	ft_lstadd_front(t_stack **lst, t_list *new);
 #endif
