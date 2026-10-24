@@ -5,6 +5,7 @@ void	push_swap(int bench_flag, char *selector, char **integers, int av)
 {
     t_stack *a;
     int selector_flag;
+    int count;
 
     selector_flag = 1;
     if (*selector == '\0')
@@ -12,6 +13,8 @@ void	push_swap(int bench_flag, char *selector, char **integers, int av)
     if (av == bench_flag + selector_flag + 1)
         print_error();
    count = fill_stack(integers, &a, av, selector_flag + bench_flag);
+   if (!count)
+       write(1, "gg", 2) ;
     /*if (ft_strncmp(selector, "complex", 7) == 0)
         sort_in_complex(a, bench_flag);
    else if (ft_strncmp(selector, "simple", 6) == 0)
