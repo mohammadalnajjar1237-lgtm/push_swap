@@ -32,7 +32,7 @@ t_stack   *create_stack(int value)
     return (a);
 }
 
-void	ft_lstadd_front(t_stack **lst, t_list *new)
+void	ft_lstadd_front2(t_stack **lst, t_stack *new)
 {
 	if (lst == NULL || new == NULL)
 		return ;
@@ -56,7 +56,7 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
     check_dups(integers);
     j = 0;
     while (integers[j])
-            ft_lstadd_front(a, create_stack(ft_atoi_m(integers[j++])));//lazm t3mal check lal errors bel atoi
+            ft_lstadd_front2(a, create_stack(ft_atoi_m(integers[j++])));//lazm t3mal check lal errors bel atoi
 
     free_all(integers);
     return (j);

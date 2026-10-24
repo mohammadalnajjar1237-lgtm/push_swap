@@ -5,9 +5,10 @@ int main(int av, char **args)
 {
     t_stack *a = NULL;
     t_stack *temp;
+    t_stack *b;
     fill_stack(args, &a, av, 0);
-    swap_a(a);
-    while (a)
+    rotate(&a, 'a');
+   while (a)
     {
         temp = a;
         a = a->next;
