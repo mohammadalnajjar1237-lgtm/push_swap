@@ -1,6 +1,6 @@
 NAME = push_swap.a
 ##CFLAGS = -Wall -Wextra -Werror
-SRCS = push_swap.c checking_args_util.c extra_func.c modified_libft_util.c modified_libft_util2.c operations.c operations2.c
+SRCS = push_swap.c checking_args_util.c extra_func.c modified_libft_util.c modified_libft_util2.c operations.c operations2.c sort_complex.c sort_simple.c
 OBJS = ${SRCS:.c=.o}
 VAR = ar rcs
 HEADER = push_swap.h

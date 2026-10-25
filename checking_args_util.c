@@ -27,17 +27,28 @@ t_stack   *create_stack(int value)
 {
     t_stack *a;
     a = malloc(sizeof(t_stack));
+    if (!a)
+        exit(1);
     a->value = value;
     a->next = NULL;
     return (a);
 }
 
-void	ft_lstadd_front2(t_stack **lst, t_stack *new)
+void	push_stack(t_stack **lst, t_stack *new)
 {
+	t_stack	*new_head;
+
 	if (lst == NULL || new == NULL)
 		return ;
-	new->next = *lst;
-	*lst = new;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	new_head = *lst;
+	while (new_head->next != NULL)
+		new_head = new_head->next;
+	new_head->next = new;
 }
 
 int    fill_stack(char **args, t_stack **a, int av, int flags_num)
@@ -56,7 +67,7 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
     check_dups(integers);
     j = 0;
     while (integers[j])
-            ft_lstadd_front2(a, create_stack(ft_atoi_m(integers[j++])));//lazm t3mal check lal errors bel atoi
+            push_stack(a, create_stack(ft_atoi_m(integers[j++])));//lazm t3mal check lal errors bel atoi
 
     free_all(integers);
     return (j);

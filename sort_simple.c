@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static int	find_min_position(t_stack *stack, t_stack_track **t)
+static int	find_min_position(t_stack *stack)
 {
 	t_stack	*current;
 	int		min_val;
@@ -8,11 +8,10 @@ static int	find_min_position(t_stack *stack, t_stack_track **t)
 	int		i;
 
 	current = stack;
-	(*t)->top = current;
 	min_val = current->value;
 	min_pos = 0;
 	i = 0;
-	while (i < (*t)->size)
+	while (current)
 	{
 		if (current->value < min_val)
 		{
@@ -25,88 +24,86 @@ static int	find_min_position(t_stack *stack, t_stack_track **t)
 	return (min_pos);
 }
 
-static void	rotate_min_to_top(t_stack *a, int pos,t_stack_track *t)
+static void	rotate_min_to_top(t_stack **a, int pos, int size)
 {
-	if (pos <= t->size / 2)
+	if (pos <= size / 2)
 	{
 		while (pos > 0)
 		{
-			rotate(a, 'a');
+			rotate(a);
 			pos--;
 		}
 	}
 	else
 	{
-		pos = t->size - pos;
+		pos = size - pos;
 		while (pos > 0)
 		{
-			reverse_rotate(a, 'a');
+			reverse_rotate(a);
 			pos--;
 		}
 	}
 }
 
-static void	sort_two(t_stack *a, t_stack_track *t)
+static void	sort_two(t_stack **a)
 {
-	if (a->(t->top)->value > a->(t->top)->next->value)
-		swap(a,'a');
+	if ((*a)->value > (*a)->next->value)
+		swap_a(*a);
 }
 
-static void	sort_three(t_stack *a)
+static void	sort_three(t_stack **a)
 {
 	int	first;
 	int	second;
 	int	third;
 
-	first = a->top->value;
-	second = a->top->next->value;
-	third = a->top->next->next->value;
+	first = (*a)->value;
+	second = (*a)->next->value;
+	third = (*a)->next->next->value;
 	if (first > second && second < third && first < third)
-		swap(a,'a');
+		swap_a(*a);
 	else if (first > second && second > third)
 	{
-		swap_a(a);
-		reverse_rotate(a, 'a');
+		swap_a(*a);
+		reverse_rotate(a);
 	}
 	else if (first > second && second < third && first > third)
-		rotate(a, 'a');
+		rotate(a);
 	else if (first < second && second > third && first < third)
 	{
-		swap_a(a);
-		rotate(a, 'a');
+		swap_a(*a);
+		rotate(a);
 	}
 	else if (first < second && second > third && first > third)
-		reverse_rotate(a,'a');
+		reverse_rotate(a);
 }
 
-void	sort_simple(t_stack *a, t_stack *b, int count)
+void	sort_simple(t_stack **a, t_stack **b, int count)
 {
 	int	pos;
 	int	push_count;
-	t_stack_track *t;
-	
-	t->size = count;
-	if (stack_is_sorted(a))
-		return ;
-	if (t->size == 2)
+
+	/*if (stack_is_sorted(*a) || count <= 1)
+		return ;*/
+	if (count == 2)
 	{
 		sort_two(a);
 		return ;
 	}
-	if (t->size == 3)
+	if (count == 3)
 	{
 		sort_three(a);
 		return ;
 	}
-	push_count = t->size - 3;
+	push_count = count - 3;
 	while (push_count > 0)
 	{
-		pos = find_min_position(a,&t );
-		rotate_min_to_top(a, pos,);
-		push_b(a, b, 'b');
+		pos = find_min_position(*a);
+		rotate_min_to_top(a, pos, count);
+		push_b(*a, *b);
 		push_count--;
 	}
 	sort_three(a);
-	while (b->size > 0)
-		push_a(a, b);
+	while (*b)
+		push_a(*a, *b);
 }
