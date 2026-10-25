@@ -5,9 +5,10 @@ int main(int av, char **args)
 {
     t_stack *a = NULL;
     t_stack *temp;
-    t_stack *b;
-    fill_stack(args, &a, av, 0);
-    rotate(&a, 'a');
+    t_stack *b = NULL;
+    int count = fill_stack(args, &a, av, 0);
+    while (compute_disorder(a, count) != 0)
+        sort_simple(&a, &b, count);
    while (a)
     {
         temp = a;

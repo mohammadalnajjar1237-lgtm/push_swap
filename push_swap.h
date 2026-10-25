@@ -7,6 +7,7 @@
 typedef struct stack{
     int value;
     struct stack *next;
+    int index;
 }t_stack;
 
 typedef struct stack_track 
@@ -29,17 +30,18 @@ void    check_dups(char **integers);
 
  void    print_error();
 char **ft_strjoin_m(char **splitted, char **integers);
-int swap_a(t_stack **a);
-int swap_b(t_stack **b);
+int swap_a(t_stack *a);
+int swap_b(t_stack *b);
 t_stack	*ft_lstlast2(t_stack *lst);
 void	ft_lstadd_back2(t_stack **lst, t_stack *new);
-int push_a(t_stack **a, t_stack **b);
-int push_b(t_stack **a, t_stack **b);
-int rotate(t_stack **a, char c);
+int push_a(t_stack *a, t_stack *b);
+int push_b(t_stack *a, t_stack *b);
+int rotate(t_stack **a);
 int is_empty_or_unary(t_stack *a);
-int reverse_rotate(t_stack **a, char c);
-int rr(t_stack **a, t_stack **b);
-int rrr(t_stack **a, t_stack **b);
-void	sort_simple(t_stack *a, t_stack *b, int count);
-void	ft_lstadd_front2(t_stack **lst, t_stack *new);
+int reverse_rotate(t_stack **a);
+//int rr(t_stack **a, t_stack **b);
+//int rrr(t_stack **a, t_stack **b);
+void sort_complex(t_stack **a, t_stack **b, int size);
+void	sort_simple(t_stack **a, t_stack **b, int count);
+double compute_disorder(t_stack *a, int size);
 #endif

@@ -33,38 +33,35 @@ static int count_bits(int n)
     return (bits);
 }
 
-static void radix_pass(t_stack **a, t_stack **b, int bit)
+static void radix_pass(t_stack **a, t_stack **b, int bit, int size)
 {
-    int n = stack_size(*a);
     int i = 0;
 
-    while (i < n)
+    while (i < size)
     {
         if ((((*a)->index >> bit) & 1) == 0)
-            push_b(a, b);
+            push_b(*a, *b);
         else
-            rotate(a, 'a');
+            rotate(a);
         i++;
     }
     while (*b)
-        push_a(a, b);
+        push_a(*a, *b);
 }
 
-void sort_complex(t_stack **a, t_stack **b)
+void sort_complex(t_stack **a, t_stack **b, int size)
 {
     int max_bits;
     int bit;
-    int size;
 
-    if (stack_is_sorted(*a))
-        return;
+    /*if (stack_is_sorted(*a))
+        return;*/
     index_stack(a);
-    size = stack_size(*a);
-    max_bits = count_bits(size - 1);
+    max_bits = size - 1;
     bit = 0;
     while (bit < max_bits)
     {
-        radix_pass(a, b, bit);
+        radix_pass(a, b, bit, size);
         bit++;
     }
 }
