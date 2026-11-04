@@ -1,6 +1,6 @@
 #include "push_swap.h"
-
-static int	find_min_position(t_stack *stack, t_stack_track **t)
+#include <stdio.h>
+static int	find_min_position(t_stack *stack, int size)
 {
 	t_stack	*current;
 	int		min_val;
@@ -8,11 +8,10 @@ static int	find_min_position(t_stack *stack, t_stack_track **t)
 	int		i;
 
 	current = stack;
-	(*t)->top = current;
 	min_val = current->value;
 	min_pos = 0;
 	i = 0;
-	while (i < (*t)->size)
+	while (i < size)
 	{
 		if (current->value < min_val)
 		{
@@ -25,88 +24,96 @@ static int	find_min_position(t_stack *stack, t_stack_track **t)
 	return (min_pos);
 }
 
-static void	rotate_min_to_top(t_stack *a, int pos,t_stack_track *t)
+static void	rotate_min_to_top(t_stack **a, int pos, int size, int *ops_count)
 {
-	if (pos <= t->size / 2)
+	if (pos <= size / 2)
 	{
 		while (pos > 0)
 		{
-			rotate(a, 'a');
+			rotate(a, 'a', ops_count);
 			pos--;
 		}
 	}
 	else
 	{
-		pos = t->size - pos;
+		pos = size - pos;
 		while (pos > 0)
 		{
-			reverse_rotate(a, 'a');
+			reverse_rotate(a, 'a', ops_count);
 			pos--;
 		}
 	}
 }
 
-static void	sort_two(t_stack *a, t_stack_track *t)
+static void	sort_two(t_stack **a, int *ops_count)
 {
-	if (a->(t->top)->value > a->(t->top)->next->value)
-		swap(a,'a');
+	if ((*a)->value > (*a)->next->value)
+		swap_a(a, ops_count);
 }
 
-static void	sort_three(t_stack *a)
+static void	sort_three(t_stack **a, int *ops_count)
 {
 	int	first;
 	int	second;
 	int	third;
 
-	first = a->top->value;
-	second = a->top->next->value;
-	third = a->top->next->next->value;
+	first = (*a)->value;
+	second = (*a)->next->value;
+	third = (*a)->next->next->value;
 	if (first > second && second < third && first < third)
-		swap(a,'a');
+		swap_a(a, ops_count);
 	else if (first > second && second > third)
 	{
-		swap_a(a);
-		reverse_rotate(a, 'a');
+		swap_a(a, ops_count);
+		reverse_rotate(a, 'a', ops_count);
 	}
 	else if (first > second && second < third && first > third)
-		rotate(a, 'a');
+		rotate(a, 'a',ops_count);
 	else if (first < second && second > third && first < third)
 	{
-		swap_a(a);
-		rotate(a, 'a');
+		swap_a(a, ops_count);
+		rotate(a, 'a', ops_count);
 	}
 	else if (first < second && second > third && first > third)
-		reverse_rotate(a,'a');
+		reverse_rotate(a,'a', ops_count);
 }
 
-void	sort_simple(t_stack *a, t_stack *b, int count)
+void	sort_simple(t_stack **a, t_stack *b, int size, int bench_flag)
 {
 	int	pos;
 	int	push_count;
-	t_stack_track *t;
-	
-	t->size = count;
-	if (stack_is_sorted(a))
+	int *ops_count;
+	int disorder;
+
+	ops_count = malloc(11  * sizeof(int));
+    if (!ops_count)
+        exit(1);//shoof itha exit wela return
+    ft_bzero(ops_count, 11 * sizeof(int));
+	disorder = compute_disorder(*a, size) * 10000;
+	if  (disorder == 0)
 		return ;
-	if (t->size == 2)
+	if (size == 2)
 	{
-		sort_two(a);
+		sort_two(a, ops_count);
 		return ;
 	}
-	if (t->size == 3)
+	if (size == 3)
 	{
-		sort_three(a);
+		sort_three(a, ops_count);
 		return ;
 	}
-	push_count = t->size - 3;
+	push_count = size - 3;
 	while (push_count > 0)
 	{
-		pos = find_min_position(a,&t );
-		rotate_min_to_top(a, pos,);
-		push_b(a, b, 'b');
+		pos = find_min_position(*a, size);
+		rotate_min_to_top(a, pos, size, ops_count);
+		push_b(a, &b, ops_count);
+		size--;
 		push_count--;
 	}
-	sort_three(a);
-	while (b->size > 0)
-		push_a(a, b);
+	sort_three(a, ops_count);
+	while (b)
+		push_a(a, &b, ops_count);
+	if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
+		bench(ops_count, disorder, "Simple / O(n^2)");
 }
