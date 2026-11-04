@@ -78,28 +78,41 @@ static void	sort_three(t_stack **a, int *ops_count)
 		reverse_rotate(a,'a', ops_count);
 }
 
-void	sort_simple(t_stack **a, t_stack *b, int size, int bench_flag)
+void	sort_simple(t_stack **a, int size, int bench_flag)
 {
 	int	pos;
 	int	push_count;
 	int *ops_count;
 	int disorder;
+	t_stack *b;
 
+	b = NULL;
 	ops_count = malloc(11  * sizeof(int));
     if (!ops_count)
         exit(1);//shoof itha exit wela return
     ft_bzero(ops_count, 11 * sizeof(int));
 	disorder = compute_disorder(*a, size) * 10000;
 	if  (disorder == 0)
+	{
+		if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
+			bench(ops_count, disorder, "Simple / O(n^2)");
+			free(ops_count);
 		return ;
+	}
 	if (size == 2)
 	{
 		sort_two(a, ops_count);
+		if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
+			bench(ops_count, disorder, "Simple / O(n^2)");
+		free(ops_count);
 		return ;
 	}
 	if (size == 3)
 	{
 		sort_three(a, ops_count);
+		if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
+			bench(ops_count, disorder, "Simple / O(n^2)");
+		free(ops_count);
 		return ;
 	}
 	push_count = size - 3;
@@ -116,4 +129,5 @@ void	sort_simple(t_stack **a, t_stack *b, int size, int bench_flag)
 		push_a(a, &b, ops_count);
 	if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
 		bench(ops_count, disorder, "Simple / O(n^2)");
+		free(ops_count);
 }

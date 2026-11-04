@@ -47,7 +47,7 @@ static int *radix_pass(t_stack **a, t_stack **b, int bit, int size)
 {
     int i = 0;
     static int *ops_count;
-    
+
     if (!ops_count)
     {
         ops_count = malloc(11  * sizeof(int));
@@ -69,14 +69,16 @@ static int *radix_pass(t_stack **a, t_stack **b, int bit, int size)
     return (ops_count);
 }
 
-void sort_complex(t_stack **a, t_stack **b, int size, int bench_flag)
+void sort_complex(t_stack **a, int size, int bench_flag)
 {
     int max_bits;
     int bit;
     int *ops_count;
     int disorder;
+    t_stack *b;
 
     disorder = compute_disorder(*a, size) * 10000;
+    b = NULL;
 	if (disorder == 0)
 		return ;
     index_stack(a);
@@ -84,9 +86,10 @@ void sort_complex(t_stack **a, t_stack **b, int size, int bench_flag)
     bit = 0;
     while (bit < max_bits)
     {
-        ops_count = radix_pass(a, b, bit, size);
+        ops_count = radix_pass(a, &b, bit, size);
         bit++;
     }
     if (bench_flag)
         bench(ops_count, disorder, "Complex / O(nlog(n))");
+        free(ops_count);
 }

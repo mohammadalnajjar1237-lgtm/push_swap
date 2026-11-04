@@ -16,6 +16,7 @@ typedef struct stack{
     t_stack *top;    
 } t_stack_track;*/
 
+void	push_swap(char **integers, int av);
 void	push_stack(t_stack **lst, t_stack *new);
 
 int    fill_stack(char **args, t_stack **a, int av, int selector_flag);
@@ -40,9 +41,9 @@ int is_empty_or_unary(t_stack *a);
 int reverse_rotate(t_stack **a, char c, int *ops_count);
 int rr(t_stack **a, t_stack **b, int *ops_count);
 int rrr(t_stack **a, t_stack **b, int *ops_count);
-void	sort_simple(t_stack **a, t_stack *b, int size, int bench_flag);
+void	sort_simple(t_stack **a, int size, int bench_flag);
 void	ft_lstadd_front2(t_stack **lst, t_stack *new);
-void sort_complex(t_stack **a, t_stack **b, int size, int bench_flag);
+void sort_complex(t_stack **a, int size, int bench_flag);
 double compute_disorder(t_stack *a, int size);
 void    bench(int *ops_count, int disorder, char *strategy);
 

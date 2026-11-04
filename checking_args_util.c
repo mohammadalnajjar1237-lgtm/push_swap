@@ -45,7 +45,7 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
     char **integers;
     int i;
     int j;
-
+    int n;
     i = flags_num + 1;
     integers = NULL;
     while (i < av)
@@ -56,8 +56,10 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
     check_dups(integers);
     j = 0;
     while (integers[j])
-            ft_lstadd_front2(a, create_stack(ft_atoi_m(integers[j++])));//lazm t3mal check lal errors bel atoi
-
+        j++;
+    n = j;
+    while (j > 0)
+        ft_lstadd_front2(a, create_stack(ft_atoi_m(integers[--j])));
     free_all(integers);
-    return (j);
+    return (n);
 }
