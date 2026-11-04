@@ -17,7 +17,6 @@ void    bench(int *ops_count, int disorder, char *strategy)
     ft_printf("[bench] disorder: %f%%\n", disorder);
     ft_printf("[bench] strategy: %s\n", strategy);
     print_ops_and_total(ops_count);
-    free(ops_count);
 }
 
 void    print_error()

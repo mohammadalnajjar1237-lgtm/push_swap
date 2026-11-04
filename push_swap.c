@@ -1,27 +1,57 @@
 #include "push_swap.h"
 
+static void free_nodes(t_stack *a)
+{  
+    t_stack *temp;
 
-void	push_swap(int bench_flag, char *selector, char **integers, int av)
+    while (a)
+    {
+        temp = a;
+        a = a->next;
+        free(temp);
+    }
+}
+
+static void split_flags(char **integers, char **selector, int *bench_flag)
+{
+    if (ft_strnstr(integers[1], "--bench", 9) != NULL || ft_strnstr(integers[2], "--bench", 9) != NULL)
+        *bench_flag = 1;
+    else
+        *bench_flag = 0;
+    if (ft_strnstr(integers[1], "--complex", 10) != NULL || ft_strnstr(integers[2], "--complex", 10) != NULL)
+        *selector = "--complex";
+    else if (ft_strnstr(integers[1], "--simple", 10) != NULL || ft_strnstr(integers[2], "--simple", 10) != NULL)
+        *selector = "--simple";
+    else if (ft_strnstr(integers[1], "--medium", 9) != NULL || ft_strnstr(integers[2], "--medium", 9) != NULL)
+        *selector = "--medium";
+    else
+        *selector = "";
+}
+
+void	push_swap(char **integers, int av)
 {
     t_stack *a;
+    char *selector;
     int selector_flag;
     int count;
+    int bench_flag = 0;
 
     selector_flag = 1;
-    if (*selector == '\0')
+    selector = NULL;
+    a = NULL;
+    split_flags(integers, &selector, &bench_flag);
+    if (selector[0] == '\0')
         selector_flag = 0;
-    if (av == bench_flag + selector_flag + 1)
+    if (av <= bench_flag + selector_flag + 1)
         print_error();
    count = fill_stack(integers, &a, av, selector_flag + bench_flag);
-   if (!count)
-       write(1, "gg", 2) ;
-    /*if (ft_strncmp(selector, "complex", 7) == 0)
-        sort_in_complex(a, bench_flag);
-   else if (ft_strncmp(selector, "simple", 6) == 0)
-         sort_in_simple(a, bench_flag, count);
-    else if (ft_strncmp(selector, "medium", 6) == 0)
-         sort_in_medium(a, bench_flag);
+    if (ft_strncmp(selector, "--complex", 10) == 0)
+        sort_complex(&a, count,bench_flag);
+   else if (ft_strncmp(selector, "--simple", 9) == 0)
+         sort_simple(&a, count, bench_flag);
+    /*else if (ft_strncmp(selector, "--medium", 9) == 0)
+         sort_medium(a, bench_flag);
     else
         sort_adaptivly(a, bench_flag);*/
-   //3ashan a7el moshkelet el operations bel bench ba3mel one dim array
+        free_nodes(a);
 }
