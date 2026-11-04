@@ -1,5 +1,5 @@
 #include "push_swap.h"
-
+#include <stdio.h>
 int is_empty_or_unary(t_stack *a)
 {
     if (a == NULL || a -> next == NULL)
@@ -7,54 +7,59 @@ int is_empty_or_unary(t_stack *a)
     return (0);
 }
 
-int swap_b(t_stack **b)
+int swap_b(t_stack **b, int *ops_count)
 {
-   t_stack *temp;
     t_stack *temp_head;
 
-    if (is_empty_or_unary(*b))
+    if (NULL || is_empty_or_unary(*b))
         return (0);
-    temp = ((*b)->next) -> next;
-    ((*b)->next)->next = *b;
     temp_head = (*b) -> next;
-    (*b)->next = temp;
-    *b = temp_head;
-    //ft_printf("sa\n");
+    (*b) -> next = ((*b) -> next) -> next;
+    temp_head -> next = *b;
+    *b  = temp_head;
+    printf("sb\n");//khaleha ft_printf
+    if (ops_count)
+        ops_count[1] += 1;
     return (1);
 }
 
-int swap_a(t_stack **a)
+int swap_a(t_stack **a, int *ops_count)
 {
-    t_stack *temp;
     t_stack *temp_head;
 
-    if (is_empty_or_unary(*a))
+    if (a == NULL || is_empty_or_unary(*a))
         return (0);
-    temp = ((*a)->next) -> next;
-    ((*a)->next)->next = *a;
     temp_head = (*a) -> next;
-    (*a)->next = temp;
-    *a = temp_head;
-    //ft_printf("sa\n");
+    (*a) -> next = ((*a) -> next) -> next;
+    temp_head -> next = *a;
+    *a  = temp_head;
+    printf("sa\n");//khaleha ft_printf
+    if (ops_count)
+        ops_count[0] += 1;
     return (1);
 }
 
-int ss(t_stack *a, t_stack *b)
+int ss(t_stack *a, t_stack *b,int *ops_count)
 {
-    if (!swap_a(&a) || !swap_b(&b))
+    if (!swap_a(&a, NULL) || !swap_b(&b, NULL))
         return (0);
-    //ft_printf("ss\n");
+    printf("ss\n");//ft
+    if (ops_count)
+        ops_count[2] += 1;
     return (1);
 }
 
-int push_a(t_stack **a, t_stack **b)
+int push_a(t_stack **a, t_stack **b, int *ops_count)
 {
     t_stack *temp;
 
-    if (*b == NULL)
+    if (*b == NULL || b == NULL)
         return (0);
     temp = (*b) ->next;
     ft_lstadd_front2(a, *b);
     *b = temp;
+    printf("pa\n");
+     if (ops_count)
+        ops_count[3] += 1;
     return (1);
 }
