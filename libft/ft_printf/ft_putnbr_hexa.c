@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_hexa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 11:13:50 by moalnajj          #+#    #+#             */
 /*   Updated: 2026/10/06 16:54:59 by moalnajj         ###   ########.fr       */
@@ -11,72 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*static unsigned int	turn_decimal(char *binary)
-{
-	unsigned int	nbr;
-	int				i;
-	int				x;
-	int				len;
-	int				c;
-
-	nbr = 0;
-	len = 32;
-	i = 0;
-	while (binary[i] != '\0')
-	{
-		c = binary[i] - '0';
-		x = len - 1;
-		while (x > 0)
-		{
-			c *= 2;
-			x--;
-		}
-		nbr += c;
-		i++;
-		len--;
-	}
-	return (nbr);
-}
-
-static char	*copy_buffer(char *buff, char *binary)
-{
-	int	j;
-
-	j = 0;
-	while (j < 32)
-	{
-		if (buff[j] == '1')
-			buff[j] = '0';
-		else
-			buff[j] = '1';
-		binary[j] = buff[j];
-		j++;
-	}
-	binary[j] = '\0';
-	return (binary);
-}*/
-
-/*static char	*turn_binary(unsigned int n)
-{
-	char	buffer[32];
-	char	*binary;
-	int		i;
-
-	i = 31;
-	while (n >= 2)
-	{
-		buffer[i--] = (n % 2) + '0';
-		n = n / 2;
-	}
-	buffer[i--] = n % 2 + '0';
-	while (i >= 0)
-		buffer[i--] = '0';
-	binary = malloc(sizeof(char) * (33));
-	if (!binary)
-		return (NULL);
-	return (copy_buffer(buffer, binary));
-}*/
 
 static void	choose_base(char b, char **base)
 {

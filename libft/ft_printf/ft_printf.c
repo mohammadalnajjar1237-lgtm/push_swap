@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 11:11:26 by moalnajj          #+#    #+#             */
 /*   Updated: 2026/10/04 19:06:38 by moalnajj         ###   ########.fr       */
@@ -49,8 +49,7 @@ int	choose_type(va_list *ap, char b, int *count)
 	else if (b == 'u'
 		&& ft_putnbr((unsigned int)va_arg(*ap, int), count) == -1)
 		return (-1);
-	else if (b == 'f'
-		&& ft_print_double(va_arg(*ap, int), count) == -1)
+	else if (b == 'f' && ft_print_double(va_arg(*ap, int), count) == -1)
 		return (-1);
 	else if (b == '%')
 	{

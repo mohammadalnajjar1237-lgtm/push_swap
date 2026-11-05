@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/27 13:02:05 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/10/06 15:50:51 by moalnajj         ###   ########.fr       */
+/*   Created: 2026/09/27 13:01:37 by moalnajj          #+#    #+#             */
+/*   Updated: 2026/10/04 17:24:58 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_putstr(char *s, int *count)
+int	ft_putchar(char c, int *count)
 {
-	if (s == NULL)
-	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		*count += 6;
-		return (1);
-	}
-	while (*s != '\0')
-	{
-		write(1, s, 1);
-		s++;
-		(*count)++;
-	}
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	(*count)++;
 	return (1);
 }
-/*int main()
-{
-	int i = 0;
-	ft_putstr(NULL, &i);
-}*/

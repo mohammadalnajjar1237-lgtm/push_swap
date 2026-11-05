@@ -6,10 +6,10 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:05:49 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/30 17:04:55 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/10/03 11:58:53 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
@@ -20,6 +20,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	temp = (unsigned char *) dest;
 	temp1 = (unsigned char *) src;
+	if (dest == NULL && src == NULL)
+		return (dest);
 	while (i < n)
 	{
 		temp[i] = temp1[i];

@@ -91,12 +91,12 @@ void	sort_simple(t_stack **a, int size, int bench_flag)
     if (!ops_count)
         exit(1);//shoof itha exit wela return
     ft_bzero(ops_count, 11 * sizeof(int));
-	disorder = compute_disorder(*a, size) * 10000;
+	disorder = compute_disorder(*a) * 10000;
 	if  (disorder == 0)
 	{
 		if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
 			bench(ops_count, disorder, "Simple / O(n^2)");
-			free(ops_count);
+		free(ops_count);
 		return ;
 	}
 	if (size == 2)
@@ -129,5 +129,5 @@ void	sort_simple(t_stack **a, int size, int bench_flag)
 		push_a(a, &b, ops_count);
 	if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
 		bench(ops_count, disorder, "Simple / O(n^2)");
-		free(ops_count);
+	free(ops_count);
 }

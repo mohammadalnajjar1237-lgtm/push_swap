@@ -16,7 +16,7 @@ typedef struct stack{
     t_stack *top;    
 } t_stack_track;*/
 
-void	push_swap(char **integers, int av);
+void	push_swap(char **integers, int av, t_stack **a);
 void	push_stack(t_stack **lst, t_stack *new);
 
 int    fill_stack(char **args, t_stack **a, int av, int selector_flag);
@@ -30,7 +30,7 @@ void    check_dups(char **integers);
  int	ft_atoi_m(const char *nptr);
 
  void    print_error();
-char **ft_strjoin_m_for_push_swap(char **splitted, char **integers);
+char **ft_strjoin_m(char **splitted, char **integers);
 int swap_a(t_stack **a, int *ops_count);
 int swap_b(t_stack **b, int *ops_count);
 t_stack	*ft_lstlast2(t_stack *lst);
@@ -44,10 +44,10 @@ int rrr(t_stack **a, t_stack **b, int *ops_count);
 void	sort_simple(t_stack **a, int size, int bench_flag);
 void	ft_lstadd_front2(t_stack **lst, t_stack *new);
 void sort_complex(t_stack **a, int size, int bench_flag);
-double compute_disorder(t_stack *a, int size);
+double compute_disorder(t_stack *a);
 void    bench(int *ops_count, int disorder, char *strategy);
 
-//========================================BOUNS=============================================================//
+//=================bouns============================================
 int swap_b_bouns(t_stack **b);
 int swap_a_bouns(t_stack **a);
 int ss_bouns(t_stack *a, t_stack *b);
@@ -57,4 +57,5 @@ int rotate_bouns(t_stack **a);
 int reverse_rotate_bouns(t_stack **a);
 int rr_bouns(t_stack **a, t_stack **b);
 int rrr_bouns(t_stack **a, t_stack **b);
+
 #endif

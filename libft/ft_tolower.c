@@ -6,9 +6,12 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 11:09:24 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/22 11:11:51 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 17:59:17 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')

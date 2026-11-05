@@ -50,7 +50,7 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
     integers = NULL;
     while (i < av)
     {
-        integers = ft_strjoin_m_for_push_swap(ft_split(args[i], ' '), integers);//bedak t3mal free lal splitted o lal integers eli gabel
+        integers = ft_strjoin_m(ft_split(args[i], ' '), integers);//bedak t3mal free lal splitted o lal integers eli gabel
         i++;
     }
     check_dups(integers);

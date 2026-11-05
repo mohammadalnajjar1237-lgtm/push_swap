@@ -1,16 +1,6 @@
 #include "push_swap.h"
 
-static void free_nodes(t_stack *a)
-{  
-    t_stack *temp;
 
-    while (a)
-    {
-        temp = a;
-        a = a->next;
-        free(temp);
-    }
-}
 
 static void split_flags(char **integers, char **selector, int *bench_flag)
 {
@@ -28,9 +18,8 @@ static void split_flags(char **integers, char **selector, int *bench_flag)
         *selector = "";
 }
 
-void	push_swap(char **integers, int av)
+void	push_swap(char **integers, int av, t_stack **a)
 {
-    t_stack *a;
     char *selector;
     int selector_flag;
     int count;
@@ -38,20 +27,18 @@ void	push_swap(char **integers, int av)
 
     selector_flag = 1;
     selector = NULL;
-    a = NULL;
     split_flags(integers, &selector, &bench_flag);
     if (selector[0] == '\0')
         selector_flag = 0;
     if (av <= bench_flag + selector_flag + 1)
         print_error();
-   count = fill_stack(integers, &a, av, selector_flag + bench_flag);
+   count = fill_stack(integers, a, av, selector_flag + bench_flag);
     if (ft_strncmp(selector, "--complex", 10) == 0)
-        sort_complex(&a, count,bench_flag);
+        sort_complex(a, count,bench_flag);
    else if (ft_strncmp(selector, "--simple", 9) == 0)
-         sort_simple(&a, count, bench_flag);
+         sort_simple(a, count, bench_flag);
     /*else if (ft_strncmp(selector, "--medium", 9) == 0)
          sort_medium(a, bench_flag);
     else
         sort_adaptivly(a, bench_flag);*/
-        free_nodes(a);
 }

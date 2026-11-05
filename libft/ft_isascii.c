@@ -6,9 +6,12 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:49:29 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/22 10:52:20 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 18:05:54 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
 int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)

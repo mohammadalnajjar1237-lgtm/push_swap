@@ -16,16 +16,17 @@ void    bench(int *ops_count, int disorder, char *strategy)
 {
     ft_printf("[bench] disorder: %f%%\n", disorder);
     ft_printf("[bench] strategy: %s\n", strategy);
-    print_ops_and_total(ops_count);
+    if (ops_count)
+        print_ops_and_total(ops_count);
 }
 
 void    print_error()
 {
-    write(2, "ERROR\n", 6);
+    write(2, "Error\n", 6);
     exit(1);
 }
 
-double compute_disorder(t_stack *a, int size)
+double compute_disorder(t_stack *a)
 {
     double mistakes = 0;
     int total_pairs = 0;

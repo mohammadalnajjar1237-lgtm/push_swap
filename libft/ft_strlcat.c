@@ -9,7 +9,7 @@
 /*   Updated: 2026/09/22 12:22:16 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <bsd/string.h>
+#include "libft.h"
 
 size_t	ft_strlcat(char *dst, char const *src, size_t size)
 {

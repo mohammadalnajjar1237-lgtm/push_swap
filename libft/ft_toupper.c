@@ -6,9 +6,12 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 11:02:22 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/22 11:08:30 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 17:58:58 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
 int	ft_toupper(int c)
 {
 	if (c >= 97 && c <= 122)
