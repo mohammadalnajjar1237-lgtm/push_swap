@@ -6,9 +6,12 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:37:28 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/22 10:38:24 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 18:05:37 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')

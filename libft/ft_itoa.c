@@ -9,7 +9,7 @@
 /*   Updated: 2026/09/27 12:50:03 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 static char	*copy_buffer(char *buff, char *num, int start, int flag)
 {

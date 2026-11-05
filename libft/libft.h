@@ -6,15 +6,24 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 13:51:58 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/29 17:22:50 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 18:04:18 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
+
 # define LIBFT_H
+
 # include <stdlib.h>
+
 # include <string.h>
-# include "ft_printf.h"
-# include "get_next_line.h"
+
+# include <unistd.h>
+
+# include <stdint.h>
+
+# include "ft_printf/ft_printf.h"
+
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_list
 {

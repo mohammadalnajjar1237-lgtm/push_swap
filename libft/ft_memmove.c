@@ -6,11 +6,10 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 15:45:23 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/30 17:03:38 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/10/03 11:59:03 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <string.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
@@ -20,6 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	temp_src = src;
 	temp_dest = dest;
+	if (dest == NULL && src == NULL)
+		return (NULL);
 	if (dest > src)
 	{
 		i = n;

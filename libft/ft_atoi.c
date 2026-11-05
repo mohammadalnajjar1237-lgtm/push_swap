@@ -6,9 +6,11 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 11:15:19 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/30 14:30:38 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 17:39:16 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
+
 int	ft_atoi(const char *nptr)
 {
 	int	i;

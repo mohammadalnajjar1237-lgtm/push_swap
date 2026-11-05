@@ -6,11 +6,10 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 14:44:23 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/29 11:58:48 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 17:58:18 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdint.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

@@ -8,9 +8,10 @@ int main(int av, char **args)
     float disorder;
 
     b = NULL;
+    a = NULL;
     if (av == 1)
         print_error();
-    int size = fill_stack(args, &a, av, 0);
+    fill_stack(args, &a, av, 0);
     temp = get_next_line(0);
     while (temp)
     {
@@ -41,8 +42,9 @@ int main(int av, char **args)
             write(2, "Error\n", 6);
             exit(1);
         }
+        temp = get_next_line(0);
     }
-    disorder = compute_disorder(a, size);
+    disorder = compute_disorder(a);
     if (disorder == 0.0 && b == NULL)
         write(1, "OK\n", 3);
     else

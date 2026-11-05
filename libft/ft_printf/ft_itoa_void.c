@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_void.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 11:10:48 by moalnajj          #+#    #+#             */
 /*   Updated: 2026/10/06 12:45:48 by moalnajj         ###   ########.fr       */
@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putstr_itoa(char *num, int *count, int start)
+static int	ft_putstr_itoa(char *num, int *count, int start)
 {
 	write(1, "0x", 2);
 	*count += 2;

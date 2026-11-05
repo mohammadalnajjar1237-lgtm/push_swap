@@ -6,6 +6,10 @@ int ft_print_double(int nbr, int *count)
     int i;
 
     i = 3;
+    if (nbr == 0)
+        return (write(1, "0.00", 4));
+     if (nbr == 10000)
+        return (write(1, "100", 3));
     while (nbr >= 10)
     {
         buffer[i--] = nbr % 10 + '0';

@@ -1,14 +1,5 @@
 #include "push_swap.h"
 
-static void count_ops_done(int *ops_radix, int *ops_count)
-{
-    int i = 0;
-    while (i < 11)
-    {
-        ops_count[i] += ops_radix[i];
-        i++;
-    }
-}
 
 void index_stack(t_stack **a)
 {
@@ -32,7 +23,7 @@ void index_stack(t_stack **a)
     }
 }
 
-static int count_bits(int n)
+/*static int count_bits(int n)
 {
     int bits = 0;
     while (n > 0)
@@ -41,7 +32,7 @@ static int count_bits(int n)
         n >>= 1;
     }
     return (bits);
-}
+}*/
 
 static int *radix_pass(t_stack **a, t_stack **b, int bit, int size)
 {
@@ -77,10 +68,16 @@ void sort_complex(t_stack **a, int size, int bench_flag)
     int disorder;
     t_stack *b;
 
-    disorder = compute_disorder(*a, size) * 10000;
+    ops_count = NULL;
+    disorder = compute_disorder(*a) * 10000;
     b = NULL;
 	if (disorder == 0)
-		return ;
+    {
+        if (bench_flag)
+            bench(ops_count, disorder, "Complex / O(nlog(n))");
+        free(ops_count);
+	    return ;
+    }
     index_stack(a);
     max_bits = size - 1;
     bit = 0;
@@ -91,5 +88,5 @@ void sort_complex(t_stack **a, int size, int bench_flag)
     }
     if (bench_flag)
         bench(ops_count, disorder, "Complex / O(nlog(n))");
-        free(ops_count);
+    free(ops_count);
 }

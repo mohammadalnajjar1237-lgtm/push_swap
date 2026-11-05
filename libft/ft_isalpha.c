@@ -6,9 +6,11 @@
 /*   By: moalnajj <moalnajj@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:42:05 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/09/22 10:42:44 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/09/30 18:05:27 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
+
 int	ft_isalpha(int c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
