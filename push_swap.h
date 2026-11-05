@@ -30,7 +30,7 @@ void    check_dups(char **integers);
  int	ft_atoi_m(const char *nptr);
 
  void    print_error();
-char **ft_strjoin_m(char **splitted, char **integers);
+char **ft_strjoin_m_for_push_swap(char **splitted, char **integers);
 int swap_a(t_stack **a, int *ops_count);
 int swap_b(t_stack **b, int *ops_count);
 t_stack	*ft_lstlast2(t_stack *lst);
@@ -47,4 +47,14 @@ void sort_complex(t_stack **a, int size, int bench_flag);
 double compute_disorder(t_stack *a, int size);
 void    bench(int *ops_count, int disorder, char *strategy);
 
+//========================================BOUNS=============================================================//
+int swap_b_bouns(t_stack **b);
+int swap_a_bouns(t_stack **a);
+int ss_bouns(t_stack *a, t_stack *b);
+int push_a_bouns(t_stack **a, t_stack **b);
+int push_b_bouns(t_stack **a, t_stack **b);
+int rotate_bouns(t_stack **a);
+int reverse_rotate_bouns(t_stack **a);
+int rr_bouns(t_stack **a, t_stack **b);
+int rrr_bouns(t_stack **a, t_stack **b);
 #endif
