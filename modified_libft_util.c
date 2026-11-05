@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-char	**ft_strjoin_m(char **splitted, char **integers)
+char	**ft_strjoin_m_for_push_swap(char **splitted, char **integers)
 {
 	int		i;
 	int		splitted_len;
