@@ -18,7 +18,7 @@ static int	ft_putstr_itoa(char *num, int *count, int start)
 	*count += 2;
 	while (start < 100)
 	{
-		if (write(1, &num[start], 1) == -1)
+		if (write(2, &num[start], 1) == -1)
 			return (-1);
 		start++;
 		(*count)++;
@@ -36,7 +36,7 @@ int	ft_itoa_p(unsigned long long n, int *count)
 	i = 99;
 	if (n == 0)
 	{
-		if (write(1, "(nil)", 5) == -1)
+		if (write(2, "(nil)", 5) == -1)
 			return (-1);
 		*count += 5;
 		return (1);

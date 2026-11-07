@@ -17,7 +17,7 @@ int	ft_putnbr(long n, int *count)
 
 	if (n < 0)
 	{
-		if (write(1, "-", 1) == -1)
+		if (write(2, "-", 1) == -1)
 			return (-1);
 		(*count)++;
 		n *= -1;
@@ -26,7 +26,7 @@ int	ft_putnbr(long n, int *count)
 		if (ft_putnbr(n / 10, count) == -1)
 			return (-1);
 	c = n % 10 + '0';
-	if (write(1, &c, 1) == -1)
+	if (write(2, &c, 1) == -1)
 		return (-1);
 	(*count)++;
 	return (1);
@@ -53,7 +53,7 @@ int	choose_type(va_list *ap, char b, int *count)
 		return (-1);
 	else if (b == '%')
 	{
-		if (write(1, "%", 1) == -1)
+		if (write(2, "%", 1) == -1)
 			return (-1);
 		(*count)++;
 	}
@@ -71,7 +71,7 @@ int	ft_printf(const char *f, ...)
 	count = 0;
 	while (f[i] != '\0')
 	{
-		if (f[i] != '%' && write(1, &f[i], 1) == -1)
+		if (f[i] != '%' && write(2, &f[i], 1) == -1)
 			return (-1);
 		if (f[i] != '%')
 			count++;

@@ -9,7 +9,7 @@ int push_b(t_stack **a, t_stack **b, int *ops_count)
     temp = (*a) ->next;
     ft_lstadd_front2(b, *a);
     *a = temp;
-    printf("pb\n");
+    ft_printf("pb\n");
      if (ops_count)
         ops_count[4] += 1;
     return (1);
@@ -25,7 +25,7 @@ int rotate(t_stack **a, char c, int *ops_count)//momken adeef ft_printf
    ft_lstlast2(*a) ->next = *a;
    (*a) -> next = NULL;
    *a = temp;
-    printf("r%c\n", c);
+    ft_printf("r%c\n", c);
      if (ops_count)
      {
         if (c == 'a')
@@ -52,7 +52,7 @@ int reverse_rotate(t_stack **a, char c, int *ops_count)
     ft_lstlast2(*a) -> next = head;
     temp -> next = NULL;
     *a = temp_tail;
-    printf("rr%c\n", c);
+    ft_printf("rr%c\n", c);
     if (ops_count)
      {
         if (c == 'a')

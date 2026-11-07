@@ -13,7 +13,7 @@
 
 int	ft_putchar(char c, int *count)
 {
-	if (write(1, &c, 1) == -1)
+	if (write(2, &c, 1) == -1)
 		return (-1);
 	(*count)++;
 	return (1);

@@ -31,7 +31,7 @@ int	ft_putnbr_hexa(unsigned int nbr, char b, int *count)
 	if (nbr >= 16)
 		ft_putnbr_hexa(nbr / 16, b, count);
 	c = base[nbr % 16];
-	if (write(1, &c, 1) == -1)
+	if (write(2, &c, 1) == -1)
 		return (-1);
 	(*count)++;
 	return (1);

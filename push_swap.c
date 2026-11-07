@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-
-
 static void split_flags(char **integers, char **selector, int *bench_flag)
 {
     if (ft_strnstr(integers[1], "--bench", 9) != NULL || ft_strnstr(integers[2], "--bench", 9) != NULL)
@@ -34,11 +32,11 @@ void	push_swap(char **integers, int av, t_stack **a)
         print_error();
    count = fill_stack(integers, a, av, selector_flag + bench_flag);
     if (ft_strncmp(selector, "--complex", 10) == 0)
-        sort_complex(a, count,bench_flag);
+        sort_complex(a, count, bench_flag);
    else if (ft_strncmp(selector, "--simple", 9) == 0)
          sort_simple(a, count, bench_flag);
-    /*else if (ft_strncmp(selector, "--medium", 9) == 0)
-         sort_medium(a, bench_flag);
+    else if (ft_strncmp(selector, "--medium", 9) == 0)
+         sort_medium(a, count, bench_flag);
     else
-        sort_adaptivly(a, bench_flag);*/
+        sort_adaptivly(a, count, bench_flag);
 }

@@ -1,13 +1,23 @@
 #include "push_swap.h"
+static void copy_strs(char **new, char **strs)
+{
+	int i;
 
+	i = 0;
+	while (strs[i])
+	{
+		new[i] = strs[i];
+		i++;
+	}
+	new[i] = NULL;
+	free(strs);
+}
 char	**ft_strjoin_m(char **splitted, char **integers)
 {
-	int		i;
 	int		splitted_len;
 	int		integers_len;
 	char	**new;
 
-	i = 0;
 	splitted_len = 0;
 	integers_len = 0;
 	if (!splitted)
@@ -21,17 +31,9 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	new = malloc(sizeof(char *) * (splitted_len + integers_len + 1));
 	if (!new)
 		exit(1);
-	while (i < integers_len)
-	{
-		new[i] = integers[i];
-		i++;
-	}
-	free(integers);
-	integers_len = 0;
-	while (integers_len < splitted_len)
-		new[i++] = splitted[integers_len++];
-	new[i] = NULL;
-	free(splitted);
+	copy_strs(new, integers);
+	copy_strs(new + integers_len, splitted);
+	//new[i] = NULL;
 	return (new);
 }
 int	ft_atoi_m(const char *nptr)
@@ -54,7 +56,7 @@ int	ft_atoi_m(const char *nptr)
 		result = (result * 10) + (nptr[i] - '0');
 		i++;
 	}
-	if (nptr[i] != '\0' || result > 2147483647 || result < -2147483648)
+	if (nptr[i] != '\0' || result * sign > 2147483647 || result * sign < -2147483648)
 		print_error();
 	return (result * sign);
 }
