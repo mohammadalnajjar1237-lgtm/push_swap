@@ -1,6 +1,6 @@
 #include "push_swap.h"
-#include <stdio.h>
-static void free_nodes(t_stack *a)
+
+/*static void free_nodes(t_stack *a)
 {  
     t_stack *temp;
 
@@ -10,19 +10,23 @@ static void free_nodes(t_stack *a)
         a = a->next;
         free(temp);
     }
-}
-int main(int av, char **args)
+}*/
+int main()//
 {
-    t_stack *a = NULL;
-    
+    /*t_stack *a = NULL;
+    if (av == 1)
+    {
+        ft_printf("./push_swap");
+        return (1);
+    }
     push_swap(args, av, &a);
     free_nodes(a);
-  /* while (a)
+    t_stack *temp;
+    while (a)
     {
         temp = a;
         a = a->next;
-        printf("%d\n", temp->value);
-        free(temp);
+        ft_printf("%d\n", temp->value);
     }*/
-
+    ft_printf("%f%%", 0.4321);
 }

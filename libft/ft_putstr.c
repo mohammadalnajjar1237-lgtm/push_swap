@@ -22,7 +22,7 @@ int	ft_putstr(char *s, int *count)
 	}
 	while (*s != '\0')
 	{
-		write(1, s, 1);
+		write(2, s, 1);
 		s++;
 		(*count)++;
 	}

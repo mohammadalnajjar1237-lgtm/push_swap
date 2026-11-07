@@ -24,33 +24,6 @@ static int	find_min_position(t_stack *stack, int size)
 	return (min_pos);
 }
 
-static void	rotate_min_to_top(t_stack **a, int pos, int size, int *ops_count)
-{
-	if (pos <= size / 2)
-	{
-		while (pos > 0)
-		{
-			rotate(a, 'a', ops_count);
-			pos--;
-		}
-	}
-	else
-	{
-		pos = size - pos;
-		while (pos > 0)
-		{
-			reverse_rotate(a, 'a', ops_count);
-			pos--;
-		}
-	}
-}
-
-static void	sort_two(t_stack **a, int *ops_count)
-{
-	if ((*a)->value > (*a)->next->value)
-		swap_a(a, ops_count);
-}
-
 static void	sort_three(t_stack **a, int *ops_count)
 {
 	int	first;
@@ -78,56 +51,41 @@ static void	sort_three(t_stack **a, int *ops_count)
 		reverse_rotate(a,'a', ops_count);
 }
 
+static void	selection_sort(t_stack **a, t_stack **b, int size, int *ops)
+{
+	while (size > 3)
+	{
+		rotate_to_top(a, 'a', find_min_position(*a, size), ops);
+		push_b(a, b, ops);
+		size--;
+	}
+	sort_three(a, ops);
+	while (*b)
+		push_a(a, b, ops);
+}
+
+
+
 void	sort_simple(t_stack **a, int size, int bench_flag)
 {
-	int	pos;
-	int	push_count;
 	int *ops_count;
 	int disorder;
 	t_stack *b;
 
 	b = NULL;
-	ops_count = malloc(11  * sizeof(int));
-    if (!ops_count)
-        exit(1);//shoof itha exit wela return
-    ft_bzero(ops_count, 11 * sizeof(int));
+	init_ops(&ops_count);
 	disorder = compute_disorder(*a) * 10000;
 	if  (disorder == 0)
 	{
-		if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
-			bench(ops_count, disorder, "Simple / O(n^2)");
-		free(ops_count);
+		end_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
 		return ;
 	}
 	if (size == 2)
-	{
-		sort_two(a, ops_count);
-		if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
-			bench(ops_count, disorder, "Simple / O(n^2)");
-		free(ops_count);
-		return ;
-	}
-	if (size == 3)
-	{
-		sort_three(a, ops_count);
-		if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
-			bench(ops_count, disorder, "Simple / O(n^2)");
-		free(ops_count);
-		return ;
-	}
-	push_count = size - 3;
-	while (push_count > 0)
-	{
-		pos = find_min_position(*a, size);
-		rotate_min_to_top(a, pos, size, ops_count);
-		push_b(a, &b, ops_count);
-		size--;
-		push_count--;
-	}
-	sort_three(a, ops_count);
-	while (b)
-		push_a(a, &b, ops_count);
-	if (bench_flag)//la tensa t7ot ino print 3al 2 standard error
+		swap_a(a, ops_count);
+	else if (disorder != 0)
+		selection_sort(a, &b, size, ops_count);
+	end_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
+	if (bench_flag)
 		bench(ops_count, disorder, "Simple / O(n^2)");
 	free(ops_count);
 }

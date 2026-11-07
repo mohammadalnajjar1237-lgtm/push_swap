@@ -23,7 +23,7 @@ void index_stack(t_stack **a)
     }
 }
 
-/*static int count_bits(int n)
+static int count_bits(int n)
 {
     int bits = 0;
     while (n > 0)
@@ -32,21 +32,14 @@ void index_stack(t_stack **a)
         n >>= 1;
     }
     return (bits);
-}*/
+}
 
-static int *radix_pass(t_stack **a, t_stack **b, int bit, int size)
+static int *radix_pass(t_stack **a, t_stack **b, int bit, int *ops_count)
 {
     int i = 0;
-    static int *ops_count;
+    int size;
 
-    if (!ops_count)
-    {
-        ops_count = malloc(11  * sizeof(int));
-        ft_bzero(ops_count, 11 * sizeof(int));
-    }
-    if (!ops_count)
-        exit(1);//shoof itha exit wela return
-    
+    size = stack_size(*a);
     while (i < size)
     {
         if ((((*a)->index >> bit) & 1) == 0)
@@ -69,24 +62,18 @@ void sort_complex(t_stack **a, int size, int bench_flag)
     t_stack *b;
 
     ops_count = NULL;
+    init_ops(&ops_count);
     disorder = compute_disorder(*a) * 10000;
     b = NULL;
 	if (disorder == 0)
     {
-        if (bench_flag)
-            bench(ops_count, disorder, "Complex / O(nlog(n))");
-        free(ops_count);
-	    return ;
+		end_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
+        return ;
     }
-    index_stack(a);
-    max_bits = size - 1;
-    bit = 0;
-    while (bit < max_bits)
-    {
-        ops_count = radix_pass(a, &b, bit, size);
-        bit++;
-    }
-    if (bench_flag)
-        bench(ops_count, disorder, "Complex / O(nlog(n))");
-    free(ops_count);
+	index_stack(a);
+	max_bits = count_bits(size - 1);
+	bit = 0;
+	while (bit < max_bits)
+		radix_pass(a, &b, bit++, ops_count);
+	end_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
 }

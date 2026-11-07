@@ -26,9 +26,9 @@ int swap_a_bouns(t_stack **a)
     return (1);
 }
 
-int ss_bouns(t_stack *a, t_stack *b)
+int ss_bouns(t_stack **a, t_stack **b)
 {
-    if (!swap_a(&a, NULL) || !swap_b(&b, NULL))
+    if (!swap_a(a, NULL) || !swap_b(b, NULL))
         return (0);
     return (1);
 }

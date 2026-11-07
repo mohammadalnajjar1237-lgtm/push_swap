@@ -1,5 +1,4 @@
 #include "push_swap.h"
-//itha ma esta3malet el capacity la tensa tem7eh
 
 void    check_dups(char **integers)
 {
@@ -50,7 +49,9 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
     integers = NULL;
     while (i < av)
     {
-        integers = ft_strjoin_m(ft_split(args[i], ' '), integers);//bedak t3mal free lal splitted o lal integers eli gabel
+        if (args[i][0] == '\0')
+            print_error();
+        integers = ft_strjoin_m(ft_split(args[i], ' '), integers);
         i++;
     }
     check_dups(integers);

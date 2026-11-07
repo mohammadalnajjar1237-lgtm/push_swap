@@ -28,15 +28,15 @@ void    print_error()
 
 double compute_disorder(t_stack *a)
 {
-    double mistakes = 0;
-    int total_pairs = 0;
+    float mistakes = 0;
+    float total_pairs = 0;
     t_stack *temp;
     while ((a->next))
     {
-        total_pairs += 1;
         temp = a  ->next;   
         while (temp)
         {
+            total_pairs += 1;
             if (a ->value > temp->value)
                 mistakes += 1;
             temp = temp -> next;
