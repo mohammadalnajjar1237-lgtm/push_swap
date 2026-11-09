@@ -21,7 +21,10 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	splitted_len = 0;
 	integers_len = 0;
 	if (!splitted)
+	{
+		free(integers);
 		exit(1);
+	}
 	if (integers == NULL)
 		return (splitted);
 	while (splitted[splitted_len])
@@ -36,15 +39,17 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	//new[i] = NULL;
 	return (new);
 }
-int	ft_atoi_m(const char *nptr)
+int	ft_atoi_m(char **npt, t_stack *a, int j)
 {
 	int		i;
 	long	result;
 	int		sign;
+	char *nptr;
 
 	i = 0;
 	result = 0;
 	sign = 1;
+	nptr = npt[j];
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
@@ -57,7 +62,11 @@ int	ft_atoi_m(const char *nptr)
 		i++;
 	}
 	if (nptr[i] != '\0' || result * sign > 2147483647 || result * sign < -2147483648)
+	{
+		free_all(npt);
+		free_nodes(a);
 		print_error();
+	}
 	return (result * sign);
 }
 

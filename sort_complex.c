@@ -45,7 +45,7 @@ static int *radix_pass(t_stack **a, t_stack **b, int bit, int *ops_count)
         if ((((*a)->index >> bit) & 1) == 0)
             push_b(a, b, ops_count);
         else
-            rotate(a, 'a', ops_count);
+            rotate_a(a, ops_count);
         i++;
     }
     while (*b)
@@ -63,6 +63,8 @@ void sort_complex(t_stack **a, int size, int bench_flag)
 
     ops_count = NULL;
     init_ops(&ops_count);
+    if (!ops_count)
+		return ;
     disorder = compute_disorder(*a) * 10000;
     b = NULL;
 	if (disorder == 0)

@@ -2,16 +2,16 @@ NAME = push_swap
 SLIB = push_swap.a
 CFLAGS = -Wall -Wextra -Werror
 SRCS = push_swap.c checking_args_util.c extra_func.c modified_libft_util.c operations.c operations2.c sort_simple.c\
-sort_complex.c sort_medium.c sort_utils.c sort_adaptivly.c
+sort_complex.c sort_medium.c sort_utils.c sort_adaptivly.c operations3.c
 OBJS = ${SRCS:.c=.o}
 VAR = ar rcs
 HEADER = push_swap.h
 BOUNS_SRCS = operations_bouns.c operations2_bouns.c
 BOUNS_OBJS = ${BOUNS_SRCS:.c=.o}
-all : ${NAME}
+all : SUBMAKE ${NAME}
 ${NAME} : ${SLIB}
 		${CC} ${CFLAGS} main.c ${SLIB} -o ${NAME}
-${SLIB} : SUBMAKE ${OBJS} ${HEADER}
+${SLIB} : ${OBJS} ${HEADER}
 	cp libft/libft.a ${SLIB}
 	${VAR} ${SLIB} ${OBJS}
 SUBMAKE : 

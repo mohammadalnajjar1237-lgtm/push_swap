@@ -18,10 +18,10 @@ t_stack   *create_stack(int value);
 
 void    check_dups(char **integers);
 
- char	**free_all(char **strs);
 
- int	ft_atoi_m(const char *nptr);
-
+/////////////modified libft//////////////////////////////
+int	ft_atoi_m(char **npt, t_stack *a, int j);
+char	**free_all(char **strs);
  char **ft_strjoin_m(char **splitted, char **integers);
  t_stack	*ft_lstlast2(t_stack *lst);
  void	ft_lstadd_front2(t_stack **lst, t_stack *new);
@@ -30,9 +30,12 @@ void    check_dups(char **integers);
  int swap_b(t_stack **b, int *ops_count);
  int push_a(t_stack **a, t_stack **b, int *ops_count);
  int push_b(t_stack **a, t_stack **b, int *ops_count);
- int rotate(t_stack **a, char c, int *ops_count);
+ int rotate_a(t_stack **a, int *ops_count);
+  int rotate_b(t_stack **a, int *ops_count);
  int is_empty_or_unary(t_stack *a);
- int reverse_rotate(t_stack **a, char c, int *ops_count);
+ int reverse_rotate_a(t_stack **a, int *ops_count);
+ int reverse_rotate_a(t_stack **a, int *ops_count);
+int reverse_rotate_b(t_stack **a, int *ops_count);
  int ss(t_stack **a, t_stack **b,int *ops_count);
  int rr(t_stack **a, t_stack **b, int *ops_count);
  int rrr(t_stack **a, t_stack **b, int *ops_count);
@@ -49,6 +52,7 @@ void    check_dups(char **integers);
  void    bench(int *ops_count, int disorder, char *strategy);
  void    print_error();
  void init_ops(int **ops_count);
+ void free_nodes(t_stack *a);
  int stack_size(t_stack *a);
 //=================bouns==================================================
 int swap_b_bouns(t_stack **b);

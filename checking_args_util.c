@@ -60,7 +60,7 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
         j++;
     n = j;
     while (j > 0)
-        ft_lstadd_front2(a, create_stack(ft_atoi_m(integers[--j])));
+        ft_lstadd_front2(a, create_stack(ft_atoi_m(integers, *a, --j)));
     free_all(integers);
     return (n);
 }
