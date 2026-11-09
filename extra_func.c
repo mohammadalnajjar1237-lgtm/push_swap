@@ -28,10 +28,10 @@ void    print_error()
 
 double compute_disorder(t_stack *a)
 {
-    float mistakes = 0;
-    float total_pairs = 0;
+    double mistakes = 0;
+    double total_pairs = 0;
     t_stack *temp;
-    while ((a->next))
+    while ((a))
     {
         temp = a  ->next;   
         while (temp)
@@ -43,6 +43,18 @@ double compute_disorder(t_stack *a)
         }
         a = a-> next;
     }
-    total_pairs++;
+    if (total_pairs == 0)
+        return (0.0);
     return (mistakes / total_pairs);
+}
+void free_nodes(t_stack *a)
+{  
+    t_stack *temp;
+
+    while (a)
+    {
+        temp = a;
+        a = a->next;
+        free(temp);
+    }
 }

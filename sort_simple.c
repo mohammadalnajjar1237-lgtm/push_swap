@@ -38,17 +38,17 @@ static void	sort_three(t_stack **a, int *ops_count)
 	else if (first > second && second > third)
 	{
 		swap_a(a, ops_count);
-		reverse_rotate(a, 'a', ops_count);
+		reverse_rotate_a(a, ops_count);
 	}
 	else if (first > second && second < third && first > third)
-		rotate(a, 'a',ops_count);
+		rotate_a(a, ops_count);
 	else if (first < second && second > third && first < third)
 	{
 		swap_a(a, ops_count);
-		rotate(a, 'a', ops_count);
+		rotate_a(a, ops_count);
 	}
 	else if (first < second && second > third && first > third)
-		reverse_rotate(a,'a', ops_count);
+		reverse_rotate_a(a, ops_count);
 }
 
 static void	selection_sort(t_stack **a, t_stack **b, int size, int *ops)
@@ -73,7 +73,10 @@ void	sort_simple(t_stack **a, int size, int bench_flag)
 	t_stack *b;
 
 	b = NULL;
+	ops_count = NULL;
 	init_ops(&ops_count);
+	if (!ops_count)
+		return ;
 	disorder = compute_disorder(*a) * 10000;
 	if  (disorder == 0)
 	{
@@ -85,7 +88,4 @@ void	sort_simple(t_stack **a, int size, int bench_flag)
 	else if (disorder != 0)
 		selection_sort(a, &b, size, ops_count);
 	end_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
-	if (bench_flag)
-		bench(ops_count, disorder, "Simple / O(n^2)");
-	free(ops_count);
 }

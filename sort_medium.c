@@ -44,7 +44,7 @@ static void	push_chunks_to_b(t_stack **a, t_stack **b, int size, int *ops)
 		if ((*a)->index <= pushed)
 		{
 			push_b(a, b, ops);
-			rotate(b, 'b', ops);
+			rotate_b(b, ops);
 			pushed++;
 		}
 		else if ((*a)->index <= pushed + chunk)
@@ -53,7 +53,7 @@ static void	push_chunks_to_b(t_stack **a, t_stack **b, int size, int *ops)
 			pushed++;
 		}
 		else
-			rotate(a, 'a', ops);
+			rotate_a(a, ops);
 	}
 }
 
@@ -73,7 +73,10 @@ void	sort_medium(t_stack **a, int size, int bench_flag)
 	t_stack	*b;
 
 	b = NULL;
+	ops = NULL;
 	init_ops(&ops);
+	if (!ops)
+		return ;
 	disorder = compute_disorder(*a) * 10000;
 	if (disorder != 0)
 	{

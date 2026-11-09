@@ -12,8 +12,10 @@ static void split_flags(char **integers, char **selector, int *bench_flag)
         *selector = "--simple";
     else if (ft_strnstr(integers[1], "--medium", 9) != NULL || ft_strnstr(integers[2], "--medium", 9) != NULL)
         *selector = "--medium";
+    else if (ft_strnstr(integers[1], "--adaptive", 14) != NULL || ft_strnstr(integers[2], "--adaptive", 14) != NULL)
+        *selector = "--adaptive";
     else
-        *selector = "";
+        *selector = ""; 
 }
 
 void	push_swap(char **integers, int av, t_stack **a)

@@ -23,6 +23,6 @@ int	ft_putnbr_hexa(unsigned int nbr, char b, int *count);
 int	ft_printf(const char *f, ...);
 int	ft_putnbr(long n, int *count);
 int	choose_type(va_list *ap, char b, int *count);
-int ft_print_double(float nbr, int *count);
+int ft_print_double(int nbr, int *count);
 
 #endif
