@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+int find_min_position(t_stack *stack, int size);
 
 void index_stack(t_stack **a)
 {
@@ -34,7 +35,7 @@ static int count_bits(int n)
     return (bits);
 }
 
-static int *radix_pass(t_stack **a, t_stack **b, int bit, int *ops_count)
+static void radix_pass(t_stack **a, t_stack **b, int bit, int *ops_count)
 {
     int i = 0;
     int size;
@@ -49,8 +50,7 @@ static int *radix_pass(t_stack **a, t_stack **b, int bit, int *ops_count)
         i++;
     }
     while (*b)
-        push_a(a, b, ops_count);
-    return (ops_count);
+        push_a(a, b, ops_count); //
 }
 
 void sort_complex(t_stack **a, int size, int bench_flag)
@@ -77,5 +77,7 @@ void sort_complex(t_stack **a, int size, int bench_flag)
 	bit = 0;
 	while (bit < max_bits)
 		radix_pass(a, &b, bit++, ops_count);
-	end_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
+    /*while (b)
+        push_a(a, &b, ops_count);*/
+    end_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
 }

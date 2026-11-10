@@ -44,7 +44,7 @@ static void	push_chunks_to_b(t_stack **a, t_stack **b, int size, int *ops)
 		if ((*a)->index <= pushed)
 		{
 			push_b(a, b, ops);
-			rotate_b(b, ops);
+			//rotate_b(b, ops);//ta3deel
 			pushed++;
 		}
 		else if ((*a)->index <= pushed + chunk)

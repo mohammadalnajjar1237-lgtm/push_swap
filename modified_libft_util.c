@@ -18,25 +18,25 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	int		integers_len;
 	char	**new;
 
-	splitted_len = 0;
-	integers_len = 0;
+	new = NULL;
 	if (!splitted)
 	{
-		free(integers);
+		free_all(integers);
 		exit(1);
 	}
 	if (integers == NULL)
 		return (splitted);
-	while (splitted[splitted_len])
-		splitted_len++;
-	while (integers[integers_len])
-		integers_len++;
+	splitted_len = num_pointers(splitted);
+	integers_len = num_pointers(integers);
 	new = malloc(sizeof(char *) * (splitted_len + integers_len + 1));
 	if (!new)
-		exit(1);
+	{
+		free_all(splitted);
+		free_all(integers);
+		return(NULL);
+	}
 	copy_strs(new, integers);
 	copy_strs(new + integers_len, splitted);
-	//new[i] = NULL;
 	return (new);
 }
 int	ft_atoi_m(char **npt, t_stack *a, int j)
