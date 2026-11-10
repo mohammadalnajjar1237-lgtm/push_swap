@@ -12,13 +12,7 @@ int stack_size(t_stack *a)
 	return(i);
 }
 
-void init_ops(int **ops_count)
-{
-	*ops_count = malloc(11  * sizeof(int));
-    if (!(*ops_count))
-        return ;
-    ft_bzero(*ops_count, 11 * sizeof(int));
-}
+
 
 void	end_sort(int *ops, int disorder, int bench_flag, char *name)
 {
@@ -27,30 +21,44 @@ void	end_sort(int *ops, int disorder, int bench_flag, char *name)
 	free(ops);
 }
 
-
+//sawi rottate_simple
 void	rotate_to_top(t_stack **s, char c, int pos, int *ops)
 {
 	int	size;
 
 	size = stack_size(*s);
-	if (pos <= size / 2)
-	{
-		while (pos-- > 0)
+		if (pos <= size / 2)
 		{
-			if (c == 'a')
-				rotate_a(s, ops);
-			else
-				rotate_b(s, ops);
+			while (pos-- > 0)
+			{
+				if (c == 'a')
+					rotate_a(s, ops);
+				else
+					rotate_b(s, ops);
+			}
 		}
-	}
-	else
-	{
-		while (pos++ < size)
+		else
 		{
-			if (c == 'a')
-				reverse_rotate_a(s, ops);
-			else
-				reverse_rotate_b(s, ops);
+			while (pos++ < size)
+			{
+				if (c == 'a')
+					reverse_rotate_a(s, ops);
+				else
+					reverse_rotate_b(s, ops);
+			}
 		}
-	}
+}
+
+void rotate_to_top_simple(t_stack **s, int pos, int *ops)
+{
+	while (pos-- > 0)
+			rotate_a(s, ops);
+}
+
+int num_pointers(char **strs)
+{
+	int i = 0;
+	while (strs[i])
+		i++;
+	return (i);
 }

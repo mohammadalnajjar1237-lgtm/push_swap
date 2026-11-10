@@ -1,6 +1,6 @@
 #include "push_swap.h"
-#include <stdio.h>
-static int	find_min_position(t_stack *stack, int size)
+
+/*static*/ int find_min_position(t_stack *stack, int size)
 {
 	t_stack	*current;
 	int		min_val;
@@ -55,7 +55,7 @@ static void	selection_sort(t_stack **a, t_stack **b, int size, int *ops)
 {
 	while (size > 3)
 	{
-		rotate_to_top(a, 'a', find_min_position(*a, size), ops);
+		rotate_to_top_simple(a, find_min_position(*a, size), ops);
 		push_b(a, b, ops);
 		size--;
 	}

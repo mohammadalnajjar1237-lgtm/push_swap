@@ -46,6 +46,7 @@ int reverse_rotate_b(t_stack **a, int *ops_count);
  void sort_adaptivly(t_stack **a, int size, int bench_flag);
  void	end_sort(int *ops_count, int disorder, int bench_flag, char *strategy);
  void	rotate_to_top(t_stack **s, char c, int pos, int *ops);
+ void rotate_to_top_simple(t_stack **s, int pos, int *ops);
  void	index_stack(t_stack **a);
  //=======================extra===========================================
  double compute_disorder(t_stack *a);
@@ -54,6 +55,7 @@ int reverse_rotate_b(t_stack **a, int *ops_count);
  void init_ops(int **ops_count);
  void free_nodes(t_stack *a);
  int stack_size(t_stack *a);
+ int num_pointers(char **strs);
 //=================bouns==================================================
 int swap_b_bouns(t_stack **b);
 int swap_a_bouns(t_stack **a);

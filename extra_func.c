@@ -22,7 +22,7 @@ void    bench(int *ops_count, int disorder, char *strategy)
 
 void    print_error()
 {
-    write(2, "Error\n", 6);
+    write(2 , "Error\n", 6);
     exit(1);
 }
 
