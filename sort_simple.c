@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-/*static*/ int find_min_position(t_stack *stack, int size)
+static int find_min_position(t_stack *stack, int size)
 {
 	t_stack	*current;
 	int		min_val;

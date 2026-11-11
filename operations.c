@@ -63,7 +63,7 @@ int push_a(t_stack **a, t_stack **b, int *ops_count)
     if (*b == NULL || b == NULL)
         return (0);
     temp = (*b) ->next;
-    ft_lstadd_front2(a, *b);
+    ft_lstadd_front2(a, *b, NULL);
     *b = temp;
     write(1, "pa\n", 3);
    // ft_printf("pa\n");

@@ -16,7 +16,9 @@ ${SLIB} : ${OBJS} ${HEADER}
 	${VAR} ${SLIB} ${OBJS}
 SUBMAKE : 
 	make -C libft
-bouns : ${SLIB}
+bouns : checker
+
+checker : main_bouns.c ${BOUNS_OBJS} ${SLIB}
 	${CC} ${CFLAGS} main_bouns.c ${BOUNS_SRCS} ${SLIB} -o checker
 clean :
 	make clean -C libft
@@ -25,4 +27,4 @@ fclean : clean
 	make fclean -C libft
 	rm -f ${SLIB} ${NAME} checker
 re : fclean all
-.PHONY: all clean fclean re SUBMAKE
+.PHONY: all clean fclean re SUBMAKE bouns

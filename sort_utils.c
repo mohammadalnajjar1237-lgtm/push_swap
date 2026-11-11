@@ -21,7 +21,6 @@ void	end_sort(int *ops, int disorder, int bench_flag, char *name)
 	free(ops);
 }
 
-//sawi rottate_simple
 void	rotate_to_top(t_stack **s, char c, int pos, int *ops)
 {
 	int	size;
