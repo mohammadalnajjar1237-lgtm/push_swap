@@ -33,7 +33,7 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	{
 		free_all(splitted);
 		free_all(integers);
-		return(NULL);
+		exit(1);
 	}
 	copy_strs(new, integers);
 	copy_strs(new + integers_len, splitted);

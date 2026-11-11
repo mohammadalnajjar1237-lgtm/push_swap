@@ -16,15 +16,13 @@ int    fill_stack(char **args, t_stack **a, int av, int selector_flag);
 
 t_stack   *create_stack(int value);
 
-void    check_dups(char **integers);
-
 
 /////////////modified libft//////////////////////////////
 int	ft_atoi_m(char **npt, t_stack *a, int j);
 char	**free_all(char **strs);
  char **ft_strjoin_m(char **splitted, char **integers);
  t_stack	*ft_lstlast2(t_stack *lst);
- void	ft_lstadd_front2(t_stack **lst, t_stack *new);
+ void	ft_lstadd_front2(t_stack **lst, t_stack *new, char **integers);
  //=================operations=============================================
  int swap_a(t_stack **a, int *ops_count);
  int swap_b(t_stack **b, int *ops_count);

@@ -40,7 +40,7 @@ int push_a_bouns(t_stack **a, t_stack **b)
     if (*b == NULL || b == NULL)
         return (0);
     temp = (*b) ->next;
-    ft_lstadd_front2(a, *b);
+    ft_lstadd_front2(a, *b, NULL);
     *b = temp;
     return (1);
 }

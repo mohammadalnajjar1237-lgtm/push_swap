@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    check_dups(char **integers)
+static void check_dups(char **integers)
 {
     int i;
     int j;
@@ -25,16 +25,25 @@ void    check_dups(char **integers)
 t_stack   *create_stack(int value)
 {
     t_stack *a;
+
     a = malloc(sizeof(t_stack));
+    if (!a)
+        return (NULL);
     a->value = value;
     a->next = NULL;
     return (a);
 }
 
-void	ft_lstadd_front2(t_stack **lst, t_stack *new)
+void	ft_lstadd_front2(t_stack **lst, t_stack *new, char **integers)
 {
-	if (lst == NULL || new == NULL)
+	if (lst == NULL)
 		return ;
+    if (new == NULL)
+    {
+        free_nodes(*lst);
+        free_all(integers);
+        exit(1);
+    }
 	new->next = *lst;
 	*lst = new;
 }
@@ -50,7 +59,10 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
     while (i < av)
     {
         if (args[i][0] == '\0')
+        {
+            free_all(integers);
             print_error();
+        }
         integers = ft_strjoin_m(ft_split(args[i], ' '), integers);
         i++;
     }
@@ -60,7 +72,7 @@ int    fill_stack(char **args, t_stack **a, int av, int flags_num)
         j++;
     n = j;
     while (j > 0)
-        ft_lstadd_front2(a, create_stack(ft_atoi_m(integers, *a, --j)));
+        ft_lstadd_front2(a, create_stack(ft_atoi_m(integers, *a, --j)), integers);
     free_all(integers);
     return (n);
 }
