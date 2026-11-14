@@ -78,6 +78,12 @@ void	sort_medium(t_stack **a, int size, int bench_flag)
 	if (!ops)
 		return ;
 	disorder = compute_disorder(*a) * 10000;
+	if (size == 3)
+	{
+		sort_three(a, ops, disorder);
+		end_sort(ops, disorder, bench_flag, "Medium / O(n*sqrt(n))");
+		return ;
+	}
 	if (disorder != 0)
 	{
 		index_stack(a);

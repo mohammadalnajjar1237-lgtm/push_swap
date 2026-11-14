@@ -24,7 +24,7 @@ static int find_min_position(t_stack *stack, int size)
 	return (min_pos);
 }
 
-static void	sort_three(t_stack **a, int *ops_count)
+/*static void	sort_three(t_stack **a, int *ops_count)
 {
 	int	first;
 	int	second;
@@ -49,7 +49,7 @@ static void	sort_three(t_stack **a, int *ops_count)
 	}
 	else if (first < second && second > third && first > third)
 		reverse_rotate_a(a, ops_count);
-}
+}*/
 
 static void	selection_sort(t_stack **a, t_stack **b, int size, int *ops)
 {
@@ -59,7 +59,7 @@ static void	selection_sort(t_stack **a, t_stack **b, int size, int *ops)
 		push_b(a, b, ops);
 		size--;
 	}
-	sort_three(a, ops);
+	sort_three(a, ops, 1);
 	while (*b)
 		push_a(a, b, ops);
 }
