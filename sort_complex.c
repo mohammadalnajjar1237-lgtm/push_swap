@@ -57,16 +57,16 @@ void sort_complex(t_stack **a, int size, int bench_flag)
     int bit;
     int *ops_count;
     int disorder;
-    t_stack *b;
+    t_stack *b = NULL;
 
     ops_count = NULL;
     init_ops(&ops_count);
     if (!ops_count)
 		return ;
     disorder = compute_disorder(*a) * 10000;
-    b = NULL;
-	if (disorder == 0)
+	if (disorder == 0 || size == 3)
     {
+        sort_three(a, ops_count, disorder);
 		end_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
         return ;
     }
