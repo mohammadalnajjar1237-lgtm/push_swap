@@ -51,9 +51,9 @@ int	ft_print_double(int nbr, int *count)
 {
 	if (nbr == 0)
 	{
-		if (write(2, "0.00", 3) == -1)
+		if (write(2, "0.00", 4) == -1)
 			return (-1);
-		(*count) += 3;
+		(*count) += 4;
 		return (1);
 	}
 	if (nbr == 10000)

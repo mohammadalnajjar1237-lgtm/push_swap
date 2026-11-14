@@ -92,7 +92,7 @@ void	sort_medium(t_stack **a, int size, int bench_flag)
 	if (size == 3)
 	{
 		sort_three(a, ops, disorder);
-		end_sort(ops, disorder, bench_flag, "Medium / O(n*sqrt(n))");
+		end_sort(ops, disorder, bench_flag, "Medium / O(n√n)");
 		return ;
 	}
 	if (disorder != 0)
@@ -101,5 +101,5 @@ void	sort_medium(t_stack **a, int size, int bench_flag)
 		push_chunks_to_b(a, &b, size, ops);
 		push_back_to_a(a, &b, ops);
 	}
-	end_sort(ops, disorder, bench_flag, "Medium / O(n*sqrt(n))");
+	end_sort(ops, disorder, bench_flag, "Medium / O(n√n)");
 }
