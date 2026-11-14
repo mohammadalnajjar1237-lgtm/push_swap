@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/14 11:29:40 by moalnajj          #+#    #+#             */
+/*   Updated: 2026/11/14 11:30:27 by moalnajj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int find_min_position(t_stack *stack, int size)
+static int	find_min_position(t_stack *stack, int size)
 {
 	t_stack	*current;
 	int		min_val;
@@ -24,33 +36,6 @@ static int find_min_position(t_stack *stack, int size)
 	return (min_pos);
 }
 
-/*static void	sort_three(t_stack **a, int *ops_count)
-{
-	int	first;
-	int	second;
-	int	third;
-
-	first = (*a)->value;
-	second = (*a)->next->value;
-	third = (*a)->next->next->value;
-	if (first > second && second < third && first < third)
-		swap_a(a, ops_count);
-	else if (first > second && second > third)
-	{
-		swap_a(a, ops_count);
-		reverse_rotate_a(a, ops_count);
-	}
-	else if (first > second && second < third && first > third)
-		rotate_a(a, ops_count);
-	else if (first < second && second > third && first < third)
-	{
-		swap_a(a, ops_count);
-		rotate_a(a, ops_count);
-	}
-	else if (first < second && second > third && first > third)
-		reverse_rotate_a(a, ops_count);
-}*/
-
 static void	selection_sort(t_stack **a, t_stack **b, int size, int *ops)
 {
 	while (size > 3)
@@ -64,13 +49,11 @@ static void	selection_sort(t_stack **a, t_stack **b, int size, int *ops)
 		push_a(a, b, ops);
 }
 
-
-
 void	sort_simple(t_stack **a, int size, int bench_flag)
 {
-	int *ops_count;
-	int disorder;
-	t_stack *b;
+	int		*ops_count;
+	int		disorder;
+	t_stack	*b;
 
 	b = NULL;
 	ops_count = NULL;
@@ -78,7 +61,7 @@ void	sort_simple(t_stack **a, int size, int bench_flag)
 	if (!ops_count)
 		return ;
 	disorder = compute_disorder(*a) * 10000;
-	if  (disorder == 0)
+	if (disorder == 0)
 	{
 		end_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
 		return ;
