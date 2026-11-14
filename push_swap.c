@@ -1,44 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/14 11:15:59 by moalnajj          #+#    #+#             */
+/*   Updated: 2026/11/14 11:16:02 by moalnajj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void split_flags(char **integers, char **selector, int *bench_flag)
+static void	split_flags(char **integers, char **selector, int *bench_flag)
 {
-    if (ft_strnstr(integers[1], "--bench", 9) != NULL || ft_strnstr(integers[2], "--bench", 9) != NULL)
-        *bench_flag = 1;
-    else
-        *bench_flag = 0;
-    if (ft_strnstr(integers[1], "--complex", 10) != NULL || ft_strnstr(integers[2], "--complex", 10) != NULL)
-        *selector = "--complex";
-    else if (ft_strnstr(integers[1], "--simple", 10) != NULL || ft_strnstr(integers[2], "--simple", 10) != NULL)
-        *selector = "--simple";
-    else if (ft_strnstr(integers[1], "--medium", 9) != NULL || ft_strnstr(integers[2], "--medium", 9) != NULL)
-        *selector = "--medium";
-    else if (ft_strnstr(integers[1], "--adaptive", 14) != NULL || ft_strnstr(integers[2], "--adaptive", 14) != NULL)
-        *selector = "--adaptive";
-    else
-        *selector = ""; 
+	if (ft_strnstr(integers[1], "--bench", 9) != NULL || ft_strnstr(integers[2],
+			"--bench", 9) != NULL)
+		*bench_flag = 1;
+	else
+		*bench_flag = 0;
+	if (ft_strnstr(integers[1], "--complex", 10) != NULL
+		|| ft_strnstr(integers[2], "--complex", 10) != NULL)
+		*selector = "--complex";
+	else if (ft_strnstr(integers[1], "--simple", 10) != NULL
+		|| ft_strnstr(integers[2], "--simple", 10) != NULL)
+		*selector = "--simple";
+	else if (ft_strnstr(integers[1], "--medium", 9) != NULL
+		|| ft_strnstr(integers[2], "--medium", 9) != NULL)
+		*selector = "--medium";
+	else if (ft_strnstr(integers[1], "--adaptive", 14) != NULL
+		|| ft_strnstr(integers[2], "--adaptive", 14) != NULL)
+		*selector = "--adaptive";
+	else
+		*selector = "";
 }
 
 void	push_swap(char **integers, int av, t_stack **a)
 {
-    char *selector;
-    int selector_flag;
-    int count;
-    int bench_flag = 0;
+	char	*selector;
+	int		selector_flag;
+	int		count;
+	int		bench_flag;
 
-    selector_flag = 1;
-    selector = NULL;
-    split_flags(integers, &selector, &bench_flag);
-    if (selector[0] == '\0')
-        selector_flag = 0;
-    if (av <= bench_flag + selector_flag + 1)
-        print_error();
-   count = fill_stack(integers, a, av, selector_flag + bench_flag);
-    if (ft_strncmp(selector, "--complex", 10) == 0)
-        sort_complex(a, count, bench_flag);
-   else if (ft_strncmp(selector, "--simple", 9) == 0)
-         sort_simple(a, count, bench_flag);
-    else if (ft_strncmp(selector, "--medium", 9) == 0)
-         sort_medium(a, count, bench_flag);
-    else
-        sort_adaptivly(a, count, bench_flag);
+	bench_flag = 0;
+	selector_flag = 1;
+	selector = NULL;
+	split_flags(integers, &selector, &bench_flag);
+	if (selector[0] == '\0')
+		selector_flag = 0;
+	if (av <= bench_flag + selector_flag + 1)
+		print_error();
+	count = fill_stack(integers, a, av, selector_flag + bench_flag);
+	if (count == 5)
+		sort_simple(a, count, bench_flag);
+	else if (ft_strncmp(selector, "--complex", 10) == 0)
+		sort_complex(a, count, bench_flag);
+	else if (ft_strncmp(selector, "--simple", 9) == 0)
+		sort_simple(a, count, bench_flag);
+	else if (ft_strncmp(selector, "--medium", 9) == 0)
+		sort_medium(a, count, bench_flag);
+	else
+		sort_adaptivly(a, count, bench_flag);
 }

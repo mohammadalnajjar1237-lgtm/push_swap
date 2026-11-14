@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_medium.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/14 14:47:21 by moalnajj          #+#    #+#             */
+/*   Updated: 2026/11/14 14:47:45 by moalnajj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	ft_sqrt(int size)
@@ -44,7 +56,7 @@ static void	push_chunks_to_b(t_stack **a, t_stack **b, int size, int *ops)
 		if ((*a)->index <= pushed)
 		{
 			push_b(a, b, ops);
-			//rotate_b(b, ops);//ta3deel
+			rotate_b(b, ops);
 			pushed++;
 		}
 		else if ((*a)->index <= pushed + chunk)
@@ -73,7 +85,6 @@ void	sort_medium(t_stack **a, int size, int bench_flag)
 	t_stack	*b;
 
 	b = NULL;
-	ops = NULL;
 	init_ops(&ops);
 	if (!ops)
 		return ;

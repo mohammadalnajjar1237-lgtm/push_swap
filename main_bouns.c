@@ -1,63 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_bouns.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/14 10:54:41 by moalnajj          #+#    #+#             */
+/*   Updated: 2026/11/14 10:59:58 by moalnajj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void choose_ops(char *temp, t_stack **a, t_stack **b)
+static void	exit_checker(char *temp, t_stack *a, t_stack *b)
 {
-    if (ft_strncmp(temp, "sa\n", 4) == 0)
-        swap_a_bouns(a);
-    else if (ft_strncmp(temp, "sb\n", 4) == 0)
-        swap_b_bouns(b);
-    else if (ft_strncmp(temp, "ss\n", 4) == 0)
-        ss_bouns(a, b);
-    else if (ft_strncmp(temp, "pa\n", 4) == 0)
-        push_a_bouns(a, b);
-    else if (ft_strncmp(temp, "pb\n", 4) == 0)
-        push_b_bouns(a, b);
-    else if (ft_strncmp(temp, "ra\n", 4) == 0)
-        rotate_bouns(a);
-    else if (ft_strncmp(temp, "rb\n", 4) == 0)
-        rotate_bouns(b);
-    else if (ft_strncmp(temp, "rr\n", 4) == 0)
-        rr_bouns(a, b);
-    else if (ft_strncmp(temp, "rra\n", 5) == 0)
-        reverse_rotate_bouns(a);
-    else if (ft_strncmp(temp, "rrb\n", 5) == 0)
-        reverse_rotate_bouns(b);
-    else if (ft_strncmp(temp, "rrr\n", 5) == 0)
-        rrr_bouns(a, b);
-    else
-    {
-        write(2, "Error\n", 6);
-        free(temp);
-        free_nodes(*a);
-        free_nodes(*b);
-        exit(1);
-    }
+	free(temp);
+	free_nodes(a);
+	free_nodes(b);
+	print_error();
 }
 
-int main(int av, char **args)
+static void	choose_ops(char *temp, t_stack **a, t_stack **b)
 {
-    t_stack *a;
-    t_stack *b;
-    char *temp;
-    float disorder;
+	if (ft_strncmp(temp, "sa\n", 4) == 0)
+		swap_a_bouns(a);
+	else if (ft_strncmp(temp, "sb\n", 4) == 0)
+		swap_b_bouns(b);
+	else if (ft_strncmp(temp, "ss\n", 4) == 0)
+		ss_bouns(a, b);
+	else if (ft_strncmp(temp, "pa\n", 4) == 0)
+		push_a_bouns(a, b);
+	else if (ft_strncmp(temp, "pb\n", 4) == 0)
+		push_b_bouns(a, b);
+	else if (ft_strncmp(temp, "ra\n", 4) == 0)
+		rotate_bouns(a);
+	else if (ft_strncmp(temp, "rb\n", 4) == 0)
+		rotate_bouns(b);
+	else if (ft_strncmp(temp, "rr\n", 4) == 0)
+		rr_bouns(a, b);
+	else if (ft_strncmp(temp, "rra\n", 5) == 0)
+		reverse_rotate_bouns(a);
+	else if (ft_strncmp(temp, "rrb\n", 5) == 0)
+		reverse_rotate_bouns(b);
+	else if (ft_strncmp(temp, "rrr\n", 5) == 0)
+		rrr_bouns(a, b);
+	else
+		exit_checker(temp, *a, *b);
+}
 
-    b = NULL;
-    a = NULL;
-    if (av == 1)
-        print_error();
-    fill_stack(args, &a, av, 0);
-    temp = get_next_line(0);
-    while (temp)
-    {
-        choose_ops(temp, &a, &b);
-        free(temp);
-        temp = get_next_line(0);
-    }
-    disorder = compute_disorder(a);
-    if (disorder == 0.0 && b == NULL)
-        write(1, "OK\n", 3);
-    else
-        write(1, "KO\n", 3);
-    free_nodes(a);
-    return (0);
+int	main(int av, char **args)
+{
+	t_stack	*a;
+	t_stack	*b;
+	char	*temp;
+	float	disorder;
+
+	b = NULL;
+	a = NULL;
+	if (av == 1)
+		print_error();
+	fill_stack(args, &a, av, 0);
+	temp = get_next_line(0);
+	while (temp)
+	{
+		choose_ops(temp, &a, &b);
+		free(temp);
+		temp = get_next_line(0);
+	}
+	disorder = compute_disorder(a);
+	if (disorder == 0.0 && b == NULL)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	free_nodes(a);
+	return (0);
 }

@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   modified_libft_util.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/14 14:43:26 by moalnajj          #+#    #+#             */
+/*   Updated: 2026/11/14 14:43:30 by moalnajj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-static void copy_strs(char **new, char **strs)
+
+static void	copy_strs(char **new, char **strs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (strs[i])
@@ -12,6 +25,7 @@ static void copy_strs(char **new, char **strs)
 	new[i] = NULL;
 	free(strs);
 }
+
 char	**ft_strjoin_m(char **splitted, char **integers)
 {
 	int		splitted_len;
@@ -39,12 +53,20 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	copy_strs(new + integers_len, splitted);
 	return (new);
 }
+
+static void	free_atoi(char **npt, t_stack *a)
+{
+	free_all(npt);
+	free_nodes(a);
+	print_error();
+}
+
 int	ft_atoi_m(char **npt, t_stack *a, int j)
 {
 	int		i;
 	long	result;
 	int		sign;
-	char *nptr;
+	char	*nptr;
 
 	i = 0;
 	result = 0;
@@ -56,17 +78,14 @@ int	ft_atoi_m(char **npt, t_stack *a, int j)
 			sign *= -1;
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = (result * 10) + (nptr[i] - '0');
+	while (nptr[i] == '0')
 		i++;
-	}
-	if (nptr[i] != '\0' || result * sign > 2147483647 || result * sign < -2147483648)
-	{
-		free_all(npt);
-		free_nodes(a);
-		print_error();
-	}
+	if (nptr[i] == '\0')
+		return (0);
+	result = turn_to_int(nptr, &i);
+	if (nptr[i] != '\0' || result * sign > 2147483647 || result * sign
+		< -2147483648)
+		free_atoi(npt, a);
 	return (result * sign);
 }
 
@@ -82,13 +101,4 @@ char	**free_all(char **strs)
 	}
 	free(strs);
 	return (NULL);
-}
-
-t_stack	*ft_lstlast2(t_stack *lst)
-{
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
 }
