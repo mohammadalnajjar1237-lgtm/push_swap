@@ -37,4 +37,5 @@ int	main(int av, char **args)
 		check_the_only_num(args[1]);
 	push_swap(args, av, &a);
 	free_nodes(a);
+	return (0);
 }
