@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checking_args_util.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 10:49:54 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 14:51:52 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:24:28 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_dups(t_stack *a, int n)
+static int	check_duplicates(t_stack *a, int n)
 {
 	t_stack	*temp;
 	t_stack	*head;
@@ -35,7 +35,7 @@ static int	check_dups(t_stack *a, int n)
 	return (n);
 }
 
-t_stack	*create_stack(int value)
+t_stack	*create_node(int value)
 {
 	t_stack	*a;
 
@@ -47,14 +47,14 @@ t_stack	*create_stack(int value)
 	return (a);
 }
 
-void	ft_lstadd_front2(t_stack **lst, t_stack *new, char **integers)
+void	stack_add_front(t_stack **lst, t_stack *new, char **integers)
 {
 	if (lst == NULL)
 		return ;
 	if (new == NULL)
 	{
 		free_nodes(*lst);
-		free_all(integers);
+		free_string_array(integers);
 		exit(1);
 	}
 	new->next = *lst;
@@ -73,10 +73,10 @@ int	fill_stack(char **args, t_stack **a, int av, int flags_num)
 	{
 		if (args[i][0] == '\0')
 		{
-			free_all(integers);
+			free_string_array(integers);
 			print_error();
 		}
-		integers = ft_strjoin_m(ft_split(args[i], ' '), integers);
+		integers = merge_string_arrays(ft_split(args[i], ' '), integers);
 		i++;
 	}
 	i = 0;
@@ -84,8 +84,8 @@ int	fill_stack(char **args, t_stack **a, int av, int flags_num)
 		i++;
 	n = i;
 	while (i > 0)
-		ft_lstadd_front2(a, create_stack(ft_atoi_m(integers, *a, --i)),
+		stack_add_front(a, create_node(parse_integer(integers, *a, --i)),
 			integers);
-	free_all(integers);
-	return (check_dups(*a, n));
+	free_string_array(integers);
+	return (check_duplicates(*a, n));
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort_medium.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zabdulja <zabdulja@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 14:47:21 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 14:47:45 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:26:27 by zabdulja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_sqrt(int size)
+static int	ceil_sqrt(int size)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ static int	ft_sqrt(int size)
 	return (i);
 }
 
-static int	find_max_pos(t_stack *b)
+static int	find_max_position(t_stack *b)
 {
 	int	max;
 	int	pos;
@@ -49,7 +49,7 @@ static void	push_chunks_to_b(t_stack **a, t_stack **b, int size, int *ops)
 	int	chunk;
 	int	pushed;
 
-	chunk = ft_sqrt(size) * 3 / 2;
+	chunk = ceil_sqrt(size) * 3 / 2;
 	pushed = 0;
 	while (*a)
 	{
@@ -69,11 +69,11 @@ static void	push_chunks_to_b(t_stack **a, t_stack **b, int size, int *ops)
 	}
 }
 
-static void	push_back_to_a(t_stack **a, t_stack **b, int *ops)
+static void	restore_sorted_stack(t_stack **a, t_stack **b, int *ops)
 {
 	while (*b)
 	{
-		rotate_to_top(b, 'b', find_max_pos(*b), ops);
+		rotate_to_top(b, 'b', find_max_position(*b), ops);
 		push_a(a, b, ops);
 	}
 }
@@ -85,21 +85,21 @@ void	sort_medium(t_stack **a, int size, int bench_flag)
 	t_stack	*b;
 
 	b = NULL;
-	init_ops(&ops);
+	init_op_counts(&ops);
 	if (!ops)
 		return ;
 	disorder = compute_disorder(*a) * 10000;
 	if (size == 3)
 	{
 		sort_three(a, ops, disorder);
-		end_sort(ops, disorder, bench_flag, "Medium / O(n√n)");
+		finish_sort(ops, disorder, bench_flag, "Medium / O(n√n)");
 		return ;
 	}
 	if (disorder != 0)
 	{
-		index_stack(a);
+		assign_ranks(a);
 		push_chunks_to_b(a, &b, size, ops);
-		push_back_to_a(a, &b, ops);
+		restore_sorted_stack(a, &b, ops);
 	}
-	end_sort(ops, disorder, bench_flag, "Medium / O(n√n)");
+	finish_sort(ops, disorder, bench_flag, "Medium / O(n√n)");
 }

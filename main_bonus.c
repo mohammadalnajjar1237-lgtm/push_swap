@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bouns.c                                       :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 10:54:41 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 10:59:58 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:24:36 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,30 @@ static void	exit_checker(char *temp, t_stack *a, t_stack *b)
 	print_error();
 }
 
-static void	choose_ops(char *temp, t_stack **a, t_stack **b)
+static void	execute_operation(char *temp, t_stack **a, t_stack **b)
 {
 	if (ft_strncmp(temp, "sa\n", 4) == 0)
-		swap_a_bouns(a);
+		swap_a_bonus(a);
 	else if (ft_strncmp(temp, "sb\n", 4) == 0)
-		swap_b_bouns(b);
+		swap_b_bonus(b);
 	else if (ft_strncmp(temp, "ss\n", 4) == 0)
-		ss_bouns(a, b);
+		ss_bonus(a, b);
 	else if (ft_strncmp(temp, "pa\n", 4) == 0)
-		push_a_bouns(a, b);
+		push_a_bonus(a, b);
 	else if (ft_strncmp(temp, "pb\n", 4) == 0)
-		push_b_bouns(a, b);
+		push_b_bonus(a, b);
 	else if (ft_strncmp(temp, "ra\n", 4) == 0)
-		rotate_bouns(a);
+		rotate_bonus(a);
 	else if (ft_strncmp(temp, "rb\n", 4) == 0)
-		rotate_bouns(b);
+		rotate_bonus(b);
 	else if (ft_strncmp(temp, "rr\n", 4) == 0)
-		rr_bouns(a, b);
+		rr_bonus(a, b);
 	else if (ft_strncmp(temp, "rra\n", 5) == 0)
-		reverse_rotate_bouns(a);
+		reverse_rotate_bonus(a);
 	else if (ft_strncmp(temp, "rrb\n", 5) == 0)
-		reverse_rotate_bouns(b);
+		reverse_rotate_bonus(b);
 	else if (ft_strncmp(temp, "rrr\n", 5) == 0)
-		rrr_bouns(a, b);
+		rrr_bonus(a, b);
 	else
 		exit_checker(temp, *a, *b);
 }
@@ -58,12 +58,12 @@ int	main(int av, char **args)
 	b = NULL;
 	a = NULL;
 	if (av == 1)
-		print_error();
+		return (0);
 	fill_stack(args, &a, av, 0);
 	temp = get_next_line(0);
 	while (temp)
 	{
-		choose_ops(temp, &a, &b);
+		execute_operation(temp, &a, &b);
 		free(temp);
 		temp = get_next_line(0);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:06:18 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:09:04 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:24:32 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	print_ops_and_total(int *ops_count)
 		ops_count[10]);
 }
 
-void	bench(int *ops_count, int disorder, char *strategy)
+void	print_benchmark(int *ops_count, int disorder, char *strategy)
 {
 	ft_printf("[bench] disorder: %f%%\n", disorder);
 	ft_printf("[bench] strategy: %s\n", strategy);

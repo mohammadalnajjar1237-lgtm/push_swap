@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zabdulja <zabdulja@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:13:15 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:13:17 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:26:00 by zabdulja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	push_b(t_stack **a, t_stack **b, int *ops_count)
 	if (*a == NULL || a == NULL)
 		return (0);
 	temp = (*a)->next;
-	ft_lstadd_front2(b, *a, NULL);
+	stack_add_front(b, *a, NULL);
 	*a = temp;
 	write(1, "pb\n", 3);
 	if (ops_count)
@@ -31,10 +31,10 @@ int	rotate_a(t_stack **a, int *ops_count)
 {
 	t_stack	*temp;
 
-	if (a == NULL || is_empty_or_unary(*a))
+	if (a == NULL || has_less_than_two(*a))
 		return (0);
 	temp = (*a)->next;
-	ft_lstlast2(*a)->next = *a;
+	stack_last(*a)->next = *a;
 	(*a)->next = NULL;
 	*a = temp;
 	if (ops_count)
@@ -49,10 +49,10 @@ int	rotate_b(t_stack **a, int *ops_count)
 {
 	t_stack	*temp;
 
-	if (a == NULL || is_empty_or_unary(*a))
+	if (a == NULL || has_less_than_two(*a))
 		return (0);
 	temp = (*a)->next;
-	ft_lstlast2(*a)->next = *a;
+	stack_last(*a)->next = *a;
 	(*a)->next = NULL;
 	*a = temp;
 	if (ops_count)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:13:09 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:13:11 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:25:34 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_empty_or_unary(t_stack *a)
+int	has_less_than_two(t_stack *a)
 {
 	if (a == NULL || a->next == NULL)
 		return (1);
@@ -23,7 +23,7 @@ int	swap_b(t_stack **b, int *ops_count)
 {
 	t_stack	*temp_head;
 
-	if (NULL || is_empty_or_unary(*b))
+	if (NULL || has_less_than_two(*b))
 		return (0);
 	temp_head = (*b)->next;
 	(*b)->next = ((*b)->next)->next;
@@ -41,7 +41,7 @@ int	swap_a(t_stack **a, int *ops_count)
 {
 	t_stack	*temp_head;
 
-	if (a == NULL || is_empty_or_unary(*a))
+	if (a == NULL || has_less_than_two(*a))
 		return (0);
 	temp_head = (*a)->next;
 	(*a)->next = ((*a)->next)->next;
@@ -72,7 +72,7 @@ int	push_a(t_stack **a, t_stack **b, int *ops_count)
 	if (*b == NULL || b == NULL)
 		return (0);
 	temp = (*b)->next;
-	ft_lstadd_front2(a, *b, NULL);
+	stack_add_front(a, *b, NULL);
 	*b = temp;
 	write(1, "pa\n", 3);
 	if (ops_count)

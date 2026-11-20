@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zabdulja <zabdulja@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:29:40 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:30:27 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:26:29 by zabdulja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,18 @@ void	sort_simple(t_stack **a, int size, int bench_flag)
 
 	b = NULL;
 	ops_count = NULL;
-	init_ops(&ops_count);
+	init_op_counts(&ops_count);
 	if (!ops_count)
 		return ;
 	disorder = compute_disorder(*a) * 10000;
 	if (disorder == 0)
 	{
-		end_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
+		finish_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
 		return ;
 	}
 	if (size == 2)
 		swap_a(a, ops_count);
 	else if (disorder != 0)
 		selection_sort(a, &b, size, ops_count);
-	end_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
+	finish_sort(ops_count, disorder, bench_flag, "Simple / O(n^2)");
 }

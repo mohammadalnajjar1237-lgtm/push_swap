@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_bouns.c                                 :+:      :+:    :+:   */
+/*   operations_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:13:40 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:13:43 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:25:35 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	swap_b_bouns(t_stack **b)
+int	swap_b_bonus(t_stack **b)
 {
 	t_stack	*temp_head;
 
-	if (NULL || is_empty_or_unary(*b))
+	if (NULL || has_less_than_two(*b))
 		return (0);
 	temp_head = (*b)->next;
 	(*b)->next = ((*b)->next)->next;
@@ -25,11 +25,11 @@ int	swap_b_bouns(t_stack **b)
 	return (1);
 }
 
-int	swap_a_bouns(t_stack **a)
+int	swap_a_bonus(t_stack **a)
 {
 	t_stack	*temp_head;
 
-	if (a == NULL || is_empty_or_unary(*a))
+	if (a == NULL || has_less_than_two(*a))
 		return (0);
 	temp_head = (*a)->next;
 	(*a)->next = ((*a)->next)->next;
@@ -38,21 +38,21 @@ int	swap_a_bouns(t_stack **a)
 	return (1);
 }
 
-int	ss_bouns(t_stack **a, t_stack **b)
+int	ss_bonus(t_stack **a, t_stack **b)
 {
-	if (!swap_a(a, NULL) || !swap_b(b, NULL))
+	if (!swap_a_bonus(a) || !swap_b_bonus(b))
 		return (0);
 	return (1);
 }
 
-int	push_a_bouns(t_stack **a, t_stack **b)
+int	push_a_bonus(t_stack **a, t_stack **b)
 {
 	t_stack	*temp;
 
 	if (*b == NULL || b == NULL)
 		return (0);
 	temp = (*b)->next;
-	ft_lstadd_front2(a, *b, NULL);
+	stack_add_front(a, *b, NULL);
 	*b = temp;
 	return (1);
 }

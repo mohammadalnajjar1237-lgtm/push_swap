@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort_complex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zabdulja <zabdulja@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:26:18 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:26:27 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:26:26 by zabdulja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	index_stack(t_stack **a)
+void	assign_ranks(t_stack **a)
 {
 	t_stack	*current;
 	t_stack	*compare;
@@ -76,20 +76,20 @@ void	sort_complex(t_stack **a, int size, int bench_flag)
 
 	b = NULL;
 	ops_count = NULL;
-	init_ops(&ops_count);
+	init_op_counts(&ops_count);
 	if (!ops_count)
 		return ;
 	disorder = compute_disorder(*a) * 10000;
 	if (disorder == 0 || size == 3)
 	{
 		sort_three(a, ops_count, disorder);
-		end_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
+		finish_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
 		return ;
 	}
-	index_stack(a);
+	assign_ranks(a);
 	max_bits = count_bits(size - 1);
 	bit = 0;
 	while (bit < max_bits)
 		radix_pass(a, &b, bit++, ops_count);
-	end_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
+	finish_sort(ops_count, disorder, bench_flag, "Complex / O(nlog(n))");
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 14:44:28 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 14:44:32 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:25:30 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_ops(int **ops_count)
+void	init_op_counts(int **ops_count)
 {
 	*ops_count = malloc(11 * sizeof(int));
 	if (!(*ops_count))
@@ -49,7 +49,7 @@ void	sort_three(t_stack **a, int *ops_count, int disorder)
 		reverse_rotate_a(a, ops_count);
 }
 
-t_stack	*ft_lstlast2(t_stack *lst)
+t_stack	*stack_last(t_stack *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -58,7 +58,7 @@ t_stack	*ft_lstlast2(t_stack *lst)
 	return (lst);
 }
 
-long	turn_to_int(char *nptr, int *i)
+long	parse_digits(char *nptr, int *i)
 {
 	long	result;
 

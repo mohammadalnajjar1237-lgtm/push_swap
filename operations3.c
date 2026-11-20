@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:13:21 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:13:24 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:25:33 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	reverse_rotate_a(t_stack **a, int *ops_count)
 	t_stack	*head;
 	t_stack	*temp_tail;
 
-	if (a == NULL || is_empty_or_unary(*a))
+	if (a == NULL || has_less_than_two(*a))
 		return (0);
 	head = *a;
-	temp_tail = ft_lstlast2(*a);
+	temp_tail = stack_last(*a);
 	while (((*a)->next)->next)
 		(*a) = (*a)->next;
 	temp = *a;
-	ft_lstlast2(*a)->next = head;
+	stack_last(*a)->next = head;
 	temp->next = NULL;
 	*a = temp_tail;
 	if (ops_count)
@@ -42,14 +42,14 @@ int	reverse_rotate_b(t_stack **a, int *ops_count)
 	t_stack	*head;
 	t_stack	*temp_tail;
 
-	if (a == NULL || is_empty_or_unary(*a))
+	if (a == NULL || has_less_than_two(*a))
 		return (0);
 	head = *a;
-	temp_tail = ft_lstlast2(*a);
+	temp_tail = stack_last(*a);
 	while (((*a)->next)->next)
 		(*a) = (*a)->next;
 	temp = *a;
-	ft_lstlast2(*a)->next = head;
+	stack_last(*a)->next = head;
 	temp->next = NULL;
 	*a = temp_tail;
 	if (ops_count)

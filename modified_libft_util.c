@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modified_libft_util.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 14:43:26 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 14:43:30 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:24:44 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	copy_strs(char **new, char **strs)
 	free(strs);
 }
 
-char	**ft_strjoin_m(char **splitted, char **integers)
+char	**merge_string_arrays(char **splitted, char **integers)
 {
 	int		splitted_len;
 	int		integers_len;
@@ -35,18 +35,18 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	new = NULL;
 	if (!splitted)
 	{
-		free_all(integers);
+		free_string_array(integers);
 		exit(1);
 	}
 	if (integers == NULL)
 		return (splitted);
-	splitted_len = num_pointers(splitted);
-	integers_len = num_pointers(integers);
+	splitted_len = count_strings(splitted);
+	integers_len = count_strings(integers);
 	new = malloc(sizeof(char *) * (splitted_len + integers_len + 1));
 	if (!new)
 	{
-		free_all(splitted);
-		free_all(integers);
+		free_string_array(splitted);
+		free_string_array(integers);
 		exit(1);
 	}
 	copy_strs(new, integers);
@@ -54,14 +54,14 @@ char	**ft_strjoin_m(char **splitted, char **integers)
 	return (new);
 }
 
-static void	free_atoi(char **npt, t_stack *a)
+static void	integer_parse_error(char **npt, t_stack *a)
 {
-	free_all(npt);
+	free_string_array(npt);
 	free_nodes(a);
 	print_error();
 }
 
-int	ft_atoi_m(char **npt, t_stack *a, int j)
+int	parse_integer(char **npt, t_stack *a, int j)
 {
 	int		i;
 	long	result;
@@ -82,17 +82,19 @@ int	ft_atoi_m(char **npt, t_stack *a, int j)
 		i++;
 	if (nptr[i] == '\0')
 		return (0);
-	result = turn_to_int(nptr, &i);
+	result = parse_digits(nptr, &i);
 	if (nptr[i] != '\0' || result * sign > 2147483647 || result * sign
 		< -2147483648)
-		free_atoi(npt, a);
+		integer_parse_error(npt, a);
 	return (result * sign);
 }
 
-char	**free_all(char **strs)
+char	**free_string_array(char **strs)
 {
 	int	i;
 
+	if (!strs)
+		return (NULL);
 	i = 0;
 	while (strs[i])
 	{

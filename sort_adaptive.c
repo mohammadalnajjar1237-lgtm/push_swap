@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptivly.c                                   :+:      :+:    :+:   */
+/*   sort_adaptive.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zabdulja <zabdulja@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:18:10 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:19:43 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:26:26 by zabdulja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_adaptivly(t_stack **a, int size, int bench_flag)
+void	sort_adaptive(t_stack **a, int size, int bench_flag)
 {
 	float	disorder;
 

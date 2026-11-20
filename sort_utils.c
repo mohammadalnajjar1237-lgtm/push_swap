@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 14:44:01 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 14:44:02 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:25:31 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	stack_size(t_stack *a)
 	return (i);
 }
 
-void	end_sort(int *ops, int disorder, int bench_flag, char *name)
+void	finish_sort(int *ops, int disorder, int bench_flag, char *name)
 {
 	if (bench_flag)
-		bench(ops, disorder, name);
+		print_benchmark(ops, disorder, name);
 	free(ops);
 }
 
@@ -65,7 +65,7 @@ void	rotate_to_top_simple(t_stack **s, int pos, int *ops)
 		rotate_a(s, ops);
 }
 
-int	num_pointers(char **strs)
+int	count_strings(char **strs)
 {
 	int	i;
 

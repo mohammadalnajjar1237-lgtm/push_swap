@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moalnajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moalnajj <moalnajj@student.42amman.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:15:59 by moalnajj          #+#    #+#             */
-/*   Updated: 2026/11/14 11:16:02 by moalnajj         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:25:32 by moalnajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	split_flags(char **integers, char **selector, int *bench_flag)
+static void	parse_flags(char **integers, char **selector, int *bench_flag)
 {
 	if (ft_strnstr(integers[1], "--bench", 9) != NULL || ft_strnstr(integers[2],
 			"--bench", 9) != NULL)
@@ -45,7 +45,7 @@ void	push_swap(char **integers, int av, t_stack **a)
 	bench_flag = 0;
 	selector_flag = 1;
 	selector = NULL;
-	split_flags(integers, &selector, &bench_flag);
+	parse_flags(integers, &selector, &bench_flag);
 	if (selector[0] == '\0')
 		selector_flag = 0;
 	if (av <= bench_flag + selector_flag + 1)
@@ -60,5 +60,5 @@ void	push_swap(char **integers, int av, t_stack **a)
 	else if (ft_strncmp(selector, "--medium", 9) == 0)
 		sort_medium(a, count, bench_flag);
 	else
-		sort_adaptivly(a, count, bench_flag);
+		sort_adaptive(a, count, bench_flag);
 }
