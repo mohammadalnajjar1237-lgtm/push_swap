@@ -70,7 +70,7 @@ AI was used to organize the README.md file and also we used it to test if there 
 
 ## Additional Sections
 
-`Sorting algorithms`
+### Sorting algorithms
 1. Simple — Selection sort (minimum extraction)
 Finds the smallest number in stack a, moves it to stack b, and repeats. The numbers are then moved back to a in sorted order.
 2. Medium — Chunk sort
@@ -88,7 +88,7 @@ The subject defines the following performance targets for random inputs
 | 500 numbers | Fewer than 12,000 operations | Fewer than 8,000 | Fewer than 5,500 |
 
 
-`Stack operations`
+### Stack operations
 | Operation | Effect |
 | --- | --- |
 | `sa` | Swap the top two elements of stack `a` |
@@ -103,7 +103,7 @@ The subject defines the following performance targets for random inputs
 | `rrb` | Reverse-rotate `b`: move the bottom element to the top |
 | `rrr` | Perform `rra` and `rrb` together |
 
-`Data structure`
+### Data structure
 Each stack is represented as a singly linked list of nodes containing:
 - value: the original integer;
 - next: a pointer to the following node;
@@ -111,10 +111,8 @@ Each stack is represented as a singly linked list of nodes containing:
 As example, the input 40 10 90 20 has ranks 2 0 3 1. Ranking normalizes arbitrary signed values to integers from 0 through n - 1.
 
 
-`
-`Team contribution`
-```
+
+### Team contribution
 moalnajj: Designed the functions to fill the stack and to check for duplicates in the inputs and handled all possible edge cases with making sure the work flow is correct and no leaks, also designed the functions that handle the operations as well as handling how the program deal with the flags and did the bench function and i helped zaid to debug his algorthims and to make it better,and finally I did the cheacker.
 
 zabdulja: Designed the 3 sorting algorithms tested them and made sure that the performence meets the requirements of the project as defined in the en.subject.pdf, also helped moalnajj in checking the project in trems of logical errors and some constraints that the subject stated. 
-```
